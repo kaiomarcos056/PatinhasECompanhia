@@ -32,6 +32,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 
         try {
             Connection conexao = Conexao.getInstancia().getConexao();
+            
             PreparedStatement ps = conexao.prepareStatement("INSERT INTO USUARIO(nome, endereco, senha, email, administrador) "
                     + "VALUES(?, ?, ?, ?, ?)");
             
