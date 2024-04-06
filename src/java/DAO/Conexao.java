@@ -26,7 +26,7 @@ public class Conexao {
             Class.forName(driver); // CARREGANDO O DRIVER JDBC ESPECIFICO DO PostgreSQL
             con = DriverManager.getConnection(url, usuario, senha); // ESTABELECENDO UMA CONEXA
             System.out.println("Conexão estabelecida com sucesso."); // RESPOSTA DE SUCESSO
-            con.close();
+            //con.close();
         }
         catch(ClassNotFoundException | SQLException  e){ // POSSIVEIS TIPOS DE ERROS
             System.err.println("Erro ao se reconectar ao banco."); // MENSAGEM DE ERRO
