@@ -1,0 +1,7 @@
+/* CRIANDO VARIAVEIS DE ESTILO PARA USARM EM TODO O CSS */
+:root {
+    --cor-primaria: #F29F05;
+    --cor-secundaria: #f1ab28;
+    --cor-texto-primaria: #B3B3B3;
+    --cor-texto-secundaria: #fff;
+}

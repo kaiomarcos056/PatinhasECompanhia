@@ -4,9 +4,49 @@
         <servlet-name>CadastroUsuarioServlet</servlet-name>
         <servlet-class>Controller.CadastroUsuarioServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServelet</servlet-name>
+        <servlet-class>Controller.LoginServelet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>Controller.Logout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarCadastro</servlet-name>
+        <servlet-class>Controller.AlterarCadastro</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUsuario</servlet-name>
+        <servlet-class>Controller.UpdateUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UsuarioServlet</servlet-name>
+        <servlet-class>Controller.UsuarioServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CadastroUsuarioServlet</servlet-name>
         <url-pattern>/cadastrar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServelet</servlet-name>
+        <url-pattern>/logar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarCadastro</servlet-name>
+        <url-pattern>/alterarCadastro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUsuario</servlet-name>
+        <url-pattern>/updateUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsuarioServlet</servlet-name>
+        <url-pattern>/UsuarioServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

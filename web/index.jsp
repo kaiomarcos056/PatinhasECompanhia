@@ -2,13 +2,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+        <link rel="stylesheet" href="css/index.css"/>
+        <script src="js/script.js"></script>
+        
+        <title>Patinhas & Companhia</title>
     </head>
     <body>
+        <div id="teste"> AAAAAAA </div>
         <h1>Login</h1>
-        <form method="POST" action="login">
+        <!--<form method="POST" action="logar">-->
+        <form method="POST" action="/novo-usuario" id="formulario">
             <label>Email</label><br>
             <input type="text" name="email"><br>
             <label>Senha</label><br>
