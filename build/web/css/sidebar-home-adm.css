@@ -1,0 +1,85 @@
+#sidebar-home-adm {
+    width: 400px;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 6px 0 16px -8px rgba(0, 0, 0, .08), 9px 0 28px 0 rgba(0, 0, 0, .05), 12px 0 48px 16px rgba(0, 0, 0, .03);
+}
+
+.sidebar-home-logo{
+    width: 100%;
+    height: 200px;
+    background-color: #F29F05;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-home-logo img{
+    width: 60%;
+}
+
+.sidebar-home-logout{
+    width: 100%;
+    height: auto;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-home-logout ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar-home-logout ul li {
+    width: 100%;
+}
+
+.sidebar-home-logout ul li a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    width: 100%;
+}
+
+.sidebar-home-logout ul li a:hover {
+    background-color: #f0f0f0;
+}
+
+.sidebar-home-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.sidebar-home-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar-home-menu ul li {
+    width: 100%;
+}
+
+.sidebar-home-menu ul li a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    width: 100%;
+}
+
+.sidebar-home-menu ul li a:hover {
+    background-color: #f0f0f0;
+}

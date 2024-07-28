@@ -1,0 +1,38 @@
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #f8f8f8;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.sidenav-header{
+    background-color: #F28705;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    gap: 10px;
+}
+
+.sidenav-header p {
+    font-size: 20px;
+}
+
+.sidenav-body{
+    padding: 15px;
+    font-size: 25px;
+    color: #04C4D9;
+    font-weight: 700;
+}
+
+.sidenav-line{
+    margin-top: 10px;
+    border-bottom: 2px solid #04C4D9;
+    margin-bottom: 10px;
+}

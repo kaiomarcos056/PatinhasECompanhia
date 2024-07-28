@@ -1,0 +1,11 @@
+nav {
+    border: 1px solid red;
+    width: 1186px;
+    margin: 0 auto;
+}
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    list-style-type: none;
+}
