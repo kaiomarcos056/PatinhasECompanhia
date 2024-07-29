@@ -1,0 +1,24 @@
+.box-produto{
+    width: 262px;
+    height: 380px;
+    border-radius: 40px;
+    border: 2px solid var(--laranja);
+    display: flex;
+    flex-flow: column;
+    padding: 20px;
+}
+
+.box-produto .box-produto-item img{
+    width: 185px;
+}
+
+.box-produto-item a{
+    color: var(--laranja);
+}
+
+.box-produto-item button{
+    border: none;
+    background: none;
+    color: var(--laranja);
+    cursor: pointer;
+}

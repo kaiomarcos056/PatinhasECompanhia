@@ -18,28 +18,40 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <!-- CSS -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+
         <!-- FONTES -->
         <%@ include file="/includes/fontes.jsp" %>
+
+        <!-- FAVICON -->
+        <link rel="icon" href="${pageContext.request.contextPath}/assets/icones/favicon.ico" type="image/x-icon">
+
         <title>Inicio</title>
     </head>
     <body>
+        <!-- MENU -->
         <%@ include file="/includes/menu.jsp" %>
-        <div class="content">
-            <section>
+        
+        <!-- BANNER -->
+        <section>
+            <div class="banner">
                 <img src="${pageContext.request.contextPath}/assets/banners/banner-um.png">
-            </section>
-            
-            <section>
-                <br>
-                <br>
-                <div style="width: 100%; display: flex; gap: 20px; overflow-x: auto;">
-                <% for(Servico servico : servicos) { %>
+                <img src="${pageContext.request.contextPath}/assets/banners/banner-dois.png">
+            </div>
+        </section>
+        
+        <br><br> 
+        
+        <!-- SERVIÇOS -->
+        <section>
+            <div style="width: 100%; display: flex; gap: 20px; overflow-x: auto;">
+                <% for (Servico servico : servicos) {%>
                 <table border="1" style="width: 300px; height: 380px;">
                     <tr>
                         <td>
-                            <img src="${pageContext.request.contextPath}/assets/servicos/<%= servico.getFoto() %>" width="100%">
+                            <img src="${pageContext.request.contextPath}/assets/servicos/<%= servico.getFoto()%>" width="100%">
                         </td>
                     </tr>
                     <tr>
@@ -58,119 +70,114 @@
                     </tr>
                 </table>
                 <% } %>
-                </div>
-                <br>
-                <br>
-            </section>
+            </div>
+        </section>
             
-            <section>
-                <div style="display: flex; gap: 40px; overflow-x: auto; ">
-                    <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-um.png">
-                    <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-dois.png">
-                    <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-tres.png">
-                    <br>
-                </div>
-                <br>
-            </section>
-                    
-            <section>
-                <br>
-                <br>
-                <div style="width: 100%; display: flex; gap: 20px; overflow-x: auto;">
-                <% for(Produto produto: racoes) { %>
-                <form action="${pageContext.request.contextPath}/carrinho/add">
-                    <table border="1" style="min-width: 262px; height: 380px;">
-                        <tr>
-                            <td style="text-align: right;">Add Favorito</td>
-                        </tr>
-                        <tr>
-                            <input type="hidden" name="produtoID" value="<%= produto.getId() %>" />
-                            <td><img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto() %>" alt="Descrição da imagem" width="100%"></td>
-                        </tr>
-                        <tr>
-                            <td><%= produto.getNome()%></td>
-                        </tr>
-                        <tr>
-                            <td><b>R$ <%= produto.getValor()%></b></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right;">
-                                <input type="submit" value="Adicionar ao Carrinho" />
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-                <% } %>
-                </div>
-                <br>
-            </section>
-                
-            <section>
-                <br>
-                <br>
-                <div style="width: 100%; display: flex; gap: 20px; overflow-x: auto;">
-                <% for(Produto produto: brinquedos) { %>
-                <form action="${pageContext.request.contextPath}/carrinho/add">
-                    <table border="1" style="width: 262px; height: 380px;">
-                        <tr>
-                            <td style="text-align: right;">Favorito</td>
-                        </tr>
-                        <tr>
-                            <input type="hidden" name="produtoID" value="<%= produto.getId() %>" />
-                            <td><img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto() %>" alt="Descrição da imagem" width="100%"></td>
-                        </tr>
-                        <tr>
-                            <td><%= produto.getNome()%></td>
-                        </tr>
-                        <tr>
-                            <td><b>R$ <%= produto.getValor()%></b></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right;">
-                                <input type="submit" value="Adicionar ao Carrinho" />
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-                <% } %>
-                </div>
-                <br><br>
-            </section>
+        <br><br><br><br>     
             
-            <section>
-                <br>
-                <br>
-                <div style="width: 100%; display: flex; gap: 20px; overflow-x: auto;">
-                <% for(Produto produto: medicamentos) { %>
+        <!-- PROMOÇÕES -->
+        <section>
+            <div style="display: flex; gap: 40px; overflow-x: auto; ">
+                <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-um.png">
+                <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-dois.png">
+                <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-tres.png">
+            </div>
+        </section>    
+
+        <br><br><br><br> 
+            
+        <!-- RAÇÕES -->
+        <section>
+            <div style="width: 100%; display: flex; gap: 40px; overflow-x: auto;">
+                <% for (Produto produto : racoes) {%>
                 <form action="${pageContext.request.contextPath}/carrinho/add">
-                    <table border="1" style="width: 262px; height: 380px;">
-                        <tr>
-                            <td style="text-align: right;">Favorito</td>
-                        </tr>
-                        <tr>
-                            <input type="hidden" name="produtoID" value="<%= produto.getId() %>" />
-                            <td><img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto() %>" alt="Descrição da imagem" width="100%"></td>
-                        </tr>
-                        <tr>
-                            <td><%= produto.getNome()%></td>
-                        </tr>
-                        <tr>
-                            <td><b>R$ <%= produto.getValor()%></b></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right;">
-                                <input type="submit" value="Adicionar ao Carrinho" />
-                            </td>
-                        </tr>
-                    </table>
+                    <input type="hidden" name="produtoID" value="<%= produto.getId()%>" />
+
+                    <div class="box-produto">
+                        <div class="box-produto-item" style="align-self: end;" >
+                            <a href=""><i class="fa-regular fa-heart"></i></a>
+                        </div>
+                        <div class="box-produto-item" style="align-self: center;">
+                            <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
+                        </div>
+                        <div class="box-produto-item"><h3><%= produto.getNome()%></h3></div>
+                        <div class="box-produto-item"><h2>R$ <%= produto.getValor()%></h2></div>
+                        <div class="box-produto-item" style="align-self: end;">
+                            <button type="submit">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
                 </form>
                 <% } %>
-                </div>
-                <br><br><br><br>
-            </section>
-        </div>
+            </div>
+        </section>
+            
+        <br><br><br><br> 
+            
+        <!-- BRINQUEDOS -->
+        <section>
+            <div style="width: 100%; display: flex; gap: 40px; overflow-x: auto;">
+                <% for (Produto produto : brinquedos) {%>
+                <form action="${pageContext.request.contextPath}/carrinho/add">
+                    <input type="hidden" name="produtoID" value="<%= produto.getId()%>" />
+
+                    <div class="box-produto">
+                        <div class="box-produto-item" style="align-self: end;" >
+                            <a href=""><i class="fa-regular fa-heart"></i></a>
+                        </div>
+                        <div class="box-produto-item" style="align-self: center;">
+                            <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
+                        </div>
+                        <div class="box-produto-item"><h3><%= produto.getNome()%></h3></div>
+                        <div class="box-produto-item"><h2>R$ <%= produto.getValor()%></h2></div>
+                        <div class="box-produto-item" style="align-self: end;">
+                            <button type="submit">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <% } %>
+            </div>
+        </section>
+            
+        <br><br><br><br> 
+            
+        <!-- MEDICAMENTO -->
+        <section>
+            <div style="width: 100%; display: flex; gap: 40px; overflow-x: auto;">
+                <% for (Produto produto : medicamentos) {%>
+                <form action="${pageContext.request.contextPath}/carrinho/add">
+                    <input type="hidden" name="produtoID" value="<%= produto.getId()%>" />
+
+                    <div class="box-produto">
+                        <div class="box-produto-item" style="align-self: end;" >
+                            <a href=""><i class="fa-regular fa-heart"></i></a>
+                        </div>
+                        <div class="box-produto-item" style="align-self: center;">
+                            <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
+                        </div>
+                        <div class="box-produto-item"><h3><%= produto.getNome()%></h3></div>
+                        <div class="box-produto-item"><h2>R$ <%= produto.getValor()%></h2></div>
+                        <div class="box-produto-item" style="align-self: end;">
+                            <button type="submit">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <% }%>
+            </div>
+        </section>
                 
-        <%@ include file="/includes/rodape.jsp" %>
+        <br><br><br><br> 
+            
+        <!-- JS SLIDE -->
+        <%@ include file="/includes/slide.jsp" %>
         
+        <!-- FOOTER -->
+        <%@ include file="/includes/rodape.jsp" %>
+
     </body>
 </html>

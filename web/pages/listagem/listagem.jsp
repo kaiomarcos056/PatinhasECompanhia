@@ -13,14 +13,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- CSS -->
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+
+        <!-- FONTES -->
+        <%@ include file="/includes/fontes.jsp" %>
+
+        <!-- FAVICON -->
+        <link rel="icon" href="${pageContext.request.contextPath}/assets/icones/favicon.ico" type="image/x-icon">
+        
         <title>Patinhas & Companhia</title>
     </head>
     <body>
         <%@ include file="/includes/menu.jsp" %>
-        <br>
-        <br>
-        <section style="width: 1186px; margin: 0 auto;">
+
+        <section>
             <div style="display: flex; justify-content: space-between">
                 <div style="display: flex; align-items: center;">
                     <label>Patinhas & <br> Companhia &nbsp;&nbsp;&nbsp;</label>
@@ -41,7 +48,7 @@
             </div>
         </section>
         <br>
-        <section style="width: 1186px; margin: 0 auto;">
+        <section>
             <% if(especie != null) { %>
             <h1><%= especie.getDescricao() %></h1>
             <% } else { %> 
@@ -52,7 +59,7 @@
             </p>
         </section>
         <br>
-        <section style="width: 1186px; margin: 0 auto;">
+        <section>
             <% if(especie != null) { %>
             <div>
                 <ul style="list-style: none; display: flex; gap: 30px; padding: 0;">

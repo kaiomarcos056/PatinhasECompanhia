@@ -1,15 +1,9 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins';
-}
-.content{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-section{
-    width: 1186px;
-}
+@import url('tiny-slider.css');
+
+@import url('cores.css');
+
+@import url('default.css');
+
+@import url('menu.css');
+
+@import url('produto.css');
