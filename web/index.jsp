@@ -73,18 +73,27 @@
             </div>
         </section>
             
-        <br><br><br><br>     
+        <br><br>  
             
         <!-- PROMOÇÕES -->
-        <section>
-            <div style="display: flex; gap: 40px; overflow-x: auto; ">
-                <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-um.png">
-                <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-dois.png">
-                <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-tres.png">
+        <section style="position: relative;">
+            <div style="display: flex;">
+                <div class="promocoes" style="/*border: 1px solid blue;*/ z-index: 8; position: relative;">
+                    <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-um.png">
+                    <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-dois.png">
+                    <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-tres.png">
+                </div>
+                <div class="tns-controls" style="/*border: 1px solid red;*/ width: 50px; z-index: 10; position: absolute; right: 0;
+                     background: rgb(255,255,255); background: linear-gradient(90deg, rgba(255, 255, 255, 0) 50.24%, rgba(242, 159, 5, 0.2) 100%);"> 
+                    <button class="tns-prev" style="display: none;">Anterior</button>
+                    <button class="tns-next" style="width: 100%; height: 216px; background: none; border: none; color: orange;">
+                        <i class="fa-solid fa-circle-chevron-right" style="font-size: 32px;"></i>
+                    </button>
+                </div>
             </div>
         </section>    
 
-        <br><br><br><br> 
+        <br><br> 
             
         <!-- RAÇÕES -->
         <section>
