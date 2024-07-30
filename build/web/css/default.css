@@ -41,3 +41,62 @@ p{
     font-size: 20px;
     font-weight: 300;
 }
+
+label{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"]{
+    height: 52px;
+    width: 100%;
+    border: 1px solid var(--laranja);
+    border-radius: 15px;
+    padding: 0px 15px;
+    font-size: 16px;
+}
+
+input[type="submit"]{
+    background-color: var(--laranja);
+    border: 1px solid var(--laranja);
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    border-radius: 10px;
+    width: 330px;
+    height: 62px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    background: none;
+    border: 1px solid var(--laranja);
+    color: var(--laranja);
+}
+
+.btn-link {
+    display: flex;
+    background: white;
+    border: 1px solid var(--laranja);
+    color: var(--laranja);
+    font-size: 25px;
+    font-weight: 600;
+    border-radius: 10px;
+    width: 330px;
+    height: 62px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    background: var(--laranja);
+    color: white;
+}
+
+.msg-erro{
+    color: red;
+    font-size: 25px;
+    font-weight: 500;
+}

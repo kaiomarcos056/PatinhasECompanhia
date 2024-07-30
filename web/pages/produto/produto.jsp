@@ -8,11 +8,7 @@
 %>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- CSS -->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-        <!-- FONTES -->
-        <%@ include file="/includes/fontes.jsp" %>
+        <%@ include file="/includes/header.jsp" %>
         <title>Produto</title>
     </head>
     <body>
@@ -31,19 +27,19 @@
 
                 <div style="width: 100%; padding: 50px; background-color: #F8F8F8; flex-grow: 1; margin: 0 auto; overflow-y: auto;">
 
-                    <h1>Produtos</h1>
-
-                    <a href="new">Novo Produto</a>
+                    <a href="new" class="">Novo Produto</a>
 
                     <br>
                     <br>
 
                     <form action="list" method="GET">
-                        <input type="text" name="produto" placeholder="produto">
-                        <button type="submit" class="">Pesquisar</button>
+                        <div style="display: flex; gap: 20px;">
+                            <input type="text" name="produto" placeholder="produto">
+                            <button type="submit" class="">Pesquisar</button>
+                        </div>
                     </form>
 
-                    <br>
+                    <br><br>
 
                     <% if (msg != null) {%>
                     <p><%= msg%></p>
@@ -52,7 +48,7 @@
                         }
                     %>
 
-                    <section style="width: 100%; display: flex; gap: 20px; flex-wrap: wrap;">
+                    <section style="width: 100%; display: flex; gap: 37px; flex-wrap: wrap;">
                         <%
                             if (produtos == null) {
                         %>

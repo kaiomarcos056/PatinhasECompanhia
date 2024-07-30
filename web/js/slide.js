@@ -22,18 +22,27 @@ var slider = tns({
     nav: false, // Adiciona a navegação por pontos
     autoplayTimeout: 3000, // Tempo em milissegundos entre as transições
     gutter: 40,
-    controlsContainer: '.tns-controls'
+    controlsContainer: '.ctl-prom'
 });
 
-/*
-var servicos = tns({
-    container: '.promocoes',
-    items: 2,
-    slideBy: 1,
+var slider = tns({
+    container: '.produtos',
+    items: 4,
+    slideBy: 'page',
     mouseDrag: true,
-    controlsContainer: '.tns-controls',
-    nav: true,
-    navPosition: 'bottom',
-    gutter: 40
+    nav: false,
+    autoplayTimeout: 3000,
+    gutter: 40,
+    controlsContainer: '.ctl-prod'
 });
-*/
+
+var slider = tns({
+    container: '.brinquedos',
+    items: 4,
+    slideBy: 'page',
+    mouseDrag: true,
+    nav: false,
+    autoplayTimeout: 3000,
+    gutter: 40,
+    controlsContainer: '.ctl-brin'
+});

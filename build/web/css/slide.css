@@ -1,0 +1,38 @@
+.box-slide{
+    position: relative;
+}
+
+.box-slide .slide-item{
+    /*display: flex;*/
+}
+
+.slide-item .imagens{
+    z-index: 8; 
+    position: relative;
+}
+
+.slide-item .controles{
+    display: flex;
+    height: 100%;
+    width: 50px; 
+    z-index: 10; 
+    position: absolute; 
+    right: 3px;
+    top: 0;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 50.24%, rgba(242, 159, 5, 0.2) 100%);
+}
+
+.controles .btn-prev{
+    display: none;
+}
+
+.controles .btn-next{
+    width: 100%; 
+    background: none; 
+    border: none; 
+    color: orange;
+}
+
+.btn-next i {
+    font-size: 32px;
+}

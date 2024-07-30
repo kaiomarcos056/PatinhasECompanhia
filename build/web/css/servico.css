@@ -1,0 +1,40 @@
+.box-servico{
+    width: 305px;
+    height: 380px;
+    border: 2px solid var(--laranja);
+    border-radius: 30px;
+    display: flex;
+    flex-flow: column;
+}
+
+.servico-item{
+    
+}
+
+.servico-item .img{
+    border: 1px solid red;
+    width: 100%;
+    height: 155px;
+    border-radius: 25px 25px 0px 0px;
+}
+
+.descricao{
+    flex: 0.5;
+    font-size: 16px;
+}
+
+.servico-btn{
+    height: 52px;
+    background-color: var(--laranja);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.servico-btn a{
+    text-decoration: none;
+    color: white;
+}

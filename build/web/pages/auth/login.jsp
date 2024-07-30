@@ -5,23 +5,45 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@ include file="/includes/header.jsp" %>
         <title>Login</title>
     </head>
     <body>
+        <br>
+        <br>
+
         <%@ include file="/includes/menu-login.jsp" %>
-        <h1>Acesse sua conta</h1>
-        <p>Informe seu e-mail e senha de cadastro</p>
-        <% if(msg != null){ %>
-            <p><%= msg %></p>
-        <% } %>
-        <form action="logar" method="POST">
-            <label>E-mail</label><br>
-            <input type="type" name="email"><br>
-            <label>Senha</label><br>
-            <input type="password" name="senha"><br>
-            <a href="<%=request.getContextPath()%>/auth/cadastro">Criar uma conta</a>
-            <input type="submit" value="Acessar">
-        </form>
+
+        <br>
+        <br>
+        <br>
+
+        <section>
+            <div style="text-align: center;">
+                <h1>Acesse sua conta</h1>
+                <p>Informe seu e-mail e senha de cadastro</p>
+            </div>
+            
+            <br>
+            <br>
+            
+            <% if (msg != null) {%> <p class="msg-erro"><%= msg%></p><br> <% }%>
+            
+            <form action="logar" method="POST">
+                <label>E-mail</label><br>
+                <input type="text" name="email" placeholder="Kelvin Erick"><br><br>
+                
+                <label>Senha</label><br>
+                <input type="password" name="senha" placeholder="*******"><br>
+                
+                <br><br><br><br>
+                
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <a href="<%=request.getContextPath()%>/auth/cadastro" class="btn-link">Criar uma conta</a>
+                    <input type="submit" value="Acessar">
+                </div>
+            </form>
+            
+        </section>
     </body>
 </html>

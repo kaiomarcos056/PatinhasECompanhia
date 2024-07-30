@@ -15,18 +15,18 @@
         </li>
         <li>
             <form action="search" class="menu-pesquisa">
-                <input type="text" name="pesquisa">
+                <input type="text" name="pesquisa" class="btn-pesquisa">
                 <button>
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
         </li>
         <li>
-            <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 10px; width: 180px;">
                 <i class="fa-solid fa-user"></i>
-                <a href="<%= request.getContextPath() %>/auth/login">
-                entre ou <br>
-                cadastre-se
+                <a href="<%= request.getContextPath() %>/auth/login" style="font-size: 20px; font-weight: 700; line-height: 20px;">
+                    entre ou
+                    cadastre-se
                 </a>
             </div>
         </li>

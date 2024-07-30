@@ -1,17 +1,25 @@
 footer{
     background-color: #F4F4F4;
     padding: 50px;
-    /*border: 1px solid green;*/
     display: flex;
     justify-content: center
 }
 
 footer .content{
-    /*border: 1px solid orange;*/
     width: 1186px;
 }
 
 footer .info{
-    /*border: 1px solid black;*/
+    /*border: 1px solid red;*/
     width: 295px;
+}
+
+.info h3{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+footer p{
+    font-size: 14px;
+    font-weight: 300;
 }

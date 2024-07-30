@@ -26,7 +26,11 @@
             </div>
             <div class="info">
                 <h3>Nossas redes sociais</h3>
-                
+                <br>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: start; align-items: center;">
+                    <img src="${pageContext.request.contextPath}/assets/whatsapp.png" />
+                    <img src="${pageContext.request.contextPath}/assets/instagram.png" />
+                </div>
                 <br>
             </div>
             <div class="info">
@@ -56,7 +60,14 @@
             </div>
             <div class="info">
                 <h3>Formas de pagamento</h3><br>
-                <br>
+                
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: start; align-items: center;">
+                    <img src="${pageContext.request.contextPath}/assets/mastercard.png" />
+                    <img src="${pageContext.request.contextPath}/assets/visa.png" />
+                    <img src="${pageContext.request.contextPath}/assets/boleto.png" />
+                    <img src="${pageContext.request.contextPath}/assets/pix.png" />
+                    <img src="${pageContext.request.contextPath}/assets/hipercard.png" />
+                </div>
             </div>
         </div>
         

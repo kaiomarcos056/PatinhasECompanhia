@@ -17,23 +17,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <!-- CSS -->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-
-        <!-- FONTES -->
-        <%@ include file="/includes/fontes.jsp" %>
-
-        <!-- FAVICON -->
-        <link rel="icon" href="${pageContext.request.contextPath}/assets/icones/favicon.ico" type="image/x-icon">
-
+        <%@ include file="/includes/header.jsp" %>
         <title>Inicio</title>
     </head>
     <body>
         <!-- MENU -->
         <%@ include file="/includes/menu.jsp" %>
-        
+
         <!-- BANNER -->
         <section>
             <div class="banner">
@@ -41,118 +31,131 @@
                 <img src="${pageContext.request.contextPath}/assets/banners/banner-dois.png">
             </div>
         </section>
-        
+
         <br><br> 
-        
+
         <!-- SERVIÇOS -->
         <section>
             <div style="width: 100%; display: flex; gap: 20px; overflow-x: auto;">
                 <% for (Servico servico : servicos) {%>
-                <table border="1" style="width: 300px; height: 380px;">
-                    <tr>
-                        <td>
-                            <img src="${pageContext.request.contextPath}/assets/servicos/<%= servico.getFoto()%>" width="100%">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b><%= servico.getNome()%></b></td>
-                    </tr>
-                    <tr>
-                        <td><%= servico.getDescricao()%></td>
-                    </tr>
-                    <tr>
-                        <td><b>A partir de R$ <%= servico.getValor()%></b></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="list/servico/">Agende Online</a>
-                        </td>
-                    </tr>
-                </table>
+                <div class="box-servico">
+                    <div class="servico-item">
+                        <div class="img">
+                            <img src="${pageContext.request.contextPath}/assets/servicos/<%= servico.getFoto()%>" height="100%">
+                        </div>
+                    </div>
+                    <div class="servico-item">
+                        <b><%= servico.getNome()%></b>
+                    </div>
+                    <div class="servico-item descricao">
+                        <%= servico.getDescricao()%>
+                    </div>
+                    <div class="servico-item">
+                        <b>A partir de R$ <%= servico.getValor()%></b>
+                    </div>
+                    <div class="servico-item servico-btn">
+                        <a href="list/servico/">Agende Online</a>
+                    </div>
+                </div>
                 <% } %>
             </div>
         </section>
-            
+
         <br><br>  
-            
+
         <!-- PROMOÇÕES -->
-        <section style="position: relative;">
-            <div style="display: flex;">
-                <div class="promocoes" style="/*border: 1px solid blue;*/ z-index: 8; position: relative;">
+        <section class="box-slide" >
+            <div class="slide-item" >
+                <div class="promocoes imagens" >
                     <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-um.png">
                     <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-dois.png">
                     <img src="${pageContext.request.contextPath}/assets/promocoes/promocao-tres.png">
                 </div>
-                <div class="tns-controls" style="/*border: 1px solid red;*/ width: 50px; z-index: 10; position: absolute; right: 0;
-                     background: rgb(255,255,255); background: linear-gradient(90deg, rgba(255, 255, 255, 0) 50.24%, rgba(242, 159, 5, 0.2) 100%);"> 
-                    <button class="tns-prev" style="display: none;">Anterior</button>
-                    <button class="tns-next" style="width: 100%; height: 216px; background: none; border: none; color: orange;">
-                        <i class="fa-solid fa-circle-chevron-right" style="font-size: 32px;"></i>
+                <div class="controles ctl-prom" > 
+                    <button class="btn-prev" ></button>
+                    <button class="btn-next" >
+                        <i class="fa-solid fa-circle-chevron-right"></i>
                     </button>
                 </div>
             </div>
         </section>    
 
         <br><br> 
-            
+
         <!-- RAÇÕES -->
-        <section>
-            <div style="width: 100%; display: flex; gap: 40px; overflow-x: auto;">
-                <% for (Produto produto : racoes) {%>
-                <form action="${pageContext.request.contextPath}/carrinho/add">
-                    <input type="hidden" name="produtoID" value="<%= produto.getId()%>" />
+        <section class="box-slide">
+            <div class="slide-item">
+                <div class="produtos imagens">
+                    <% for (Produto produto : racoes) {%>
+                    <form action="${pageContext.request.contextPath}/carrinho/add">
+                        <input type="hidden" name="produtoID" value="<%= produto.getId()%>" />
 
-                    <div class="box-produto">
-                        <div class="box-produto-item" style="align-self: end;" >
-                            <a href=""><i class="fa-regular fa-heart"></i></a>
+                        <div class="box-produto">
+                            <div class="box-produto-item" style="align-self: end;" >
+                                <a href=""><i class="fa-regular fa-heart"></i></a>
+                            </div>
+                            <div class="box-produto-item" style="align-self: center;">
+                                <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
+                            </div>
+                            <div class="box-produto-item"><h3><%= produto.getNome()%></h3></div>
+                            <div class="box-produto-item"><h2>R$ <%= produto.getValor()%></h2></div>
+                            <div class="box-produto-item" style="align-self: end;">
+                                <button type="submit">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="box-produto-item" style="align-self: center;">
-                            <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
-                        </div>
-                        <div class="box-produto-item"><h3><%= produto.getNome()%></h3></div>
-                        <div class="box-produto-item"><h2>R$ <%= produto.getValor()%></h2></div>
-                        <div class="box-produto-item" style="align-self: end;">
-                            <button type="submit">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <% } %>
+                    </form>
+                    <% } %>
+                </div>
+                <div class="controles ctl-prod" > 
+                    <button class="btn-prev" ></button>
+                    <button class="btn-next" >
+                        <i class="fa-solid fa-circle-chevron-right"></i>
+                    </button>
+                </div>
             </div>
         </section>
-            
+
         <br><br><br><br> 
-            
+
         <!-- BRINQUEDOS -->
-        <section>
-            <div style="width: 100%; display: flex; gap: 40px; overflow-x: auto;">
-                <% for (Produto produto : brinquedos) {%>
-                <form action="${pageContext.request.contextPath}/carrinho/add">
-                    <input type="hidden" name="produtoID" value="<%= produto.getId()%>" />
+        <section class="box-slide">
+            <div class="slide-item">
+                <div class="brinquedos imagens">
+                    <% for (Produto produto : brinquedos) {%>
+                    <form action="${pageContext.request.contextPath}/carrinho/add">
+                        <input type="hidden" name="produtoID" value="<%= produto.getId()%>" />
 
-                    <div class="box-produto">
-                        <div class="box-produto-item" style="align-self: end;" >
-                            <a href=""><i class="fa-regular fa-heart"></i></a>
+                        <div class="box-produto">
+                            <div class="box-produto-item" style="align-self: end;" >
+                                <a href=""><i class="fa-regular fa-heart"></i></a>
+                            </div>
+                            <div class="box-produto-item" style="align-self: center;">
+                                <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
+                            </div>
+                            <div class="box-produto-item"><h3><%= produto.getNome()%></h3></div>
+                            <div class="box-produto-item"><h2>R$ <%= produto.getValor()%></h2></div>
+                            <div class="box-produto-item" style="align-self: end;">
+                                <button type="submit">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="box-produto-item" style="align-self: center;">
-                            <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
-                        </div>
-                        <div class="box-produto-item"><h3><%= produto.getNome()%></h3></div>
-                        <div class="box-produto-item"><h2>R$ <%= produto.getValor()%></h2></div>
-                        <div class="box-produto-item" style="align-self: end;">
-                            <button type="submit">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <% } %>
+                    </form>
+                    <% } %>
+                </div>
+                <div class="controles ctl-brin" > 
+                    <button class="btn-prev" ></button>
+                    <button class="btn-next" >
+                        <i class="fa-solid fa-circle-chevron-right"></i>
+                    </button>
+                </div>
             </div>
         </section>
-            
+
         <br><br><br><br> 
-            
+
         <!-- MEDICAMENTO -->
         <section>
             <div style="width: 100%; display: flex; gap: 40px; overflow-x: auto;">
@@ -179,12 +182,12 @@
                 <% }%>
             </div>
         </section>
-                
+
         <br><br><br><br> 
-            
+
         <!-- JS SLIDE -->
         <%@ include file="/includes/slide.jsp" %>
-        
+
         <!-- FOOTER -->
         <%@ include file="/includes/rodape.jsp" %>
 
