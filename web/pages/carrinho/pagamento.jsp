@@ -1,4 +1,7 @@
 <div id="pagamento" class="city" style="display:none">
+    <br>
+    <br>
+    
     <h1>Pagamento</h1>
     
     <p>Solicitamos que você confirme os dados inseridos durante o seu cadastro</p>
@@ -11,9 +14,9 @@
         <div style="width: 904px; margin: 0 auto;">
             
             <% if(carrinho != null) { %>
-            <div style="padding: 20px; border: 2px solid orange; border-radius: 40px; display: flex; flex-flow: column;">
+            <div class="box-list-carrinho">
                 
-                <h1>Resumo do pedido</h1>
+                <h2>Resumo do pedido</h2>
                 <table border="0" style="text-align: left;">
                     <tr>
                         <th>Produto</th>
@@ -73,21 +76,21 @@
                         <td colspan="2"> <label>Número</label></td>
                     </tr>
                     <tr>
-                        <td colspan="2"> <input type="text" name="endereco" style="width: 95%;"> </td>
+                        <td colspan="2"> <input type="text" name="numero-card" style="width: 95%;" placeholder="1234 5678 9101 778"> </td>
                     </tr>
                     <tr>
                         <td colspan="2" <label>Nome impresso no cartão</label></td>
                     </tr>
                     <tr>
-                        <td colspan="2"> <input type="text" name="endereco" style="width: 95%;"><br></td>
+                        <td colspan="2"> <input type="text" name="nome-card" style="width: 95%;" placeholder="CARTAO"><br></td>
                     </tr>
                     <tr>
                         <td> <label>CPF do Titular</label></td>
                         <td> <label>Validade</label></td>
                     </tr>
                     <tr>
-                        <td> <input type="text" name="endereco" style="width: 90%;"></td>
-                        <td> <input type="text" name="endereco" style="width: 90%;"></td>
+                        <td> <input type="text" name="cpf" style="width: 90%;" placeholder="123.456.789-00"></td>
+                        <td> <input type="text" name="validade" style="width: 90%;" placeholder="08/23"></td>
                     </tr>
                     <tr>
                         <td> <label>CVV</label></td>
@@ -107,9 +110,6 @@
         
     </section>
    
-    <br>
-    <br>
-    <br>
-    <br>
+    <br><br><br><br><br><br>
     
 </div>

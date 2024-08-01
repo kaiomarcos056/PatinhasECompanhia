@@ -6,12 +6,16 @@
 <html>
     <head>
         <%@ include file="/includes/header.jsp" %>
+        
         <script src="${pageContext.request.contextPath}/js/carrinho.js"></script>
+        
         <title>Carrinho</title>
     </head>
     <body>
         <%@ include file="/includes/menu.jsp" %>
+        
         <br>
+        
         <div >
             <section style="width: 1186px; margin: 0 auto;">
                 <div class="tabs-bar">

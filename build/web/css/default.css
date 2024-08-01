@@ -100,3 +100,27 @@ input[type="submit"]:hover{
     font-size: 25px;
     font-weight: 500;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.tabela-home{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-home th,
+.tabela-home td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabela-home tr:hover {background-color: var(--laranja);}
+
+.tabela-home tr:nth-child(odd) {
+    /*background-color: #f9f9f9;*/
+}

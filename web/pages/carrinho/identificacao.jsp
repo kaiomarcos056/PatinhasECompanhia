@@ -4,26 +4,37 @@
 %>
 
 <div id="identificacao" class="city" style="display:none">
+    <br><br>
+    
     <h1>Identificação</h1>
     <p>Solicitamos que você confirme os dados inseridos durante o seu cadastro</p>
-    <br>
-    <section style="width: 1186px; margin: 0 auto;">
+    
+    <br><br>
+    
+    <section>
+        
         <div style="width: 900px; margin: 0 auto;">
-            <label>Nome e sobrenome</label>
-            <input type="type" name="name" style="width: 100%;">
+            
+            <label>Nome</label>
+            <input type="text" name="nome" placeholder="Kelvin Erick">
             <br>
             <br>
             <label>Email</label>
-            <input type="type" name="name" style="width: 100%;">
+            <input type="text" name="email" placeholder="erick@email.com">
             <br>
             <br>
             <label>Telefone</label>
-            <input type="type" name="name" style="width: 100%;">
-            <br>
-            <br>
+            <input type="text" name="telefone" placeholder="(85) 94002-8922">
+            
+            <br><br><br>
+            
+            
             <% if(carrinho != null) { %>
-            <div style="padding: 20px; border: 2px solid orange; border-radius: 40px; display: flex; flex-flow: column;">
-                <h1>Resumo do pedido</h1>
+            <div class="box-list-carrinho">
+                <h2>Resumo do pedido</h2>
+                
+                <br>
+                
                 <table border="0" style="text-align: left;">
                     <tr>
                         <th>Produto</th>
@@ -51,7 +62,8 @@
                 <br>
                 
                 <div id="linha" style="width: 100%; border-bottom: 1px solid black;"></div>
-                <table border="0">
+                
+                <table>
                     <tr>
                         <td>
                             <b>Frete:</b>
@@ -59,7 +71,9 @@
                         <td style="text-align: right;"> <p>R$ <%= frete %></p> </td>
                     </tr>
                 </table>
+                    
                 <div id="linha" style="width: 100%; border-bottom: 1px solid black;"></div>
+                
                 <table border="0">
                     <tr>
                         <td>
@@ -79,9 +93,9 @@
                 <button>Voltar</button>
                 <button>Proximo</button>
             </div>
-            <br>
-            <br>
-            <br>
+            
+            <br><br><br><br><br><br>
+            
         </div>
     </section>
 </div>

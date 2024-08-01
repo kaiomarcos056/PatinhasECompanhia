@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Modak&display=swap');
+
+.box-item-carrinho{
+    width: 649px;
+    height: 380px;
+    border: 1px solid var(--laranja);
+    border-radius: 40px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.box-item-carrinho a{
+    text-decoration: none;
+    color: var(--laranja);
+    align-self: end;
+}
+
+.box-item-carrinho a i {
+    font-size: 30px;
+}
+
+.box-item-carrinho img{
+    height: 190px;
+}
+
+.box-item-carrinho h2{
+    font-size: 20px;
+    font-weight: 500;
+    align-self: start;
+}
+
+.box-item-carrinho .preco{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preco .controle{
+    font-family: 'Modak', cursive !important;
+    display: flex;
+    gap: 10px;
+}
+
+.preco .controle button{
+    border: none;
+    background: none;
+    font-size: 25px;
+    font-family: 'Modak';
+    cursor: pointer;
+}
+
+.preco .controle input{
+    width: 50px;
+    border: 1px solid var(--laranja);
+    border-radius: 7px;
+    text-align: center;
+    font-size: 20px;
+    font-size: 25px;
+    font-family: 'Modak';
+}
+
+.box-preco{
+    width: 413px; 
+    height: 703px; 
+    border: 2px solid var(--laranja); 
+    border-radius: 40px; 
+    padding: 20px 30px;
+}
+
+.box-preco input[type="text"]{
+    width: 100%; 
+    height: 63px; 
+    border: 2px solid var(--laranja); 
+    border-radius: 10px; 
+    font-size: 25px;
+}
+
+.box-preco button{
+    width: 100%; 
+    height: 63px; 
+    border: 2px solid var(--laranja); 
+    background: var(--laranja);
+    border-radius: 10px; 
+    font-size: 25px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.box-preco h2{
+    font-size: 40px;
+    font-weight: 400;
+    font-family: 'Modak';
+    color: var(--cinza);
+}
+
+.box-flag{
+    width: 340px;
+    height: 85px;
+    border: 2px solid var(--laranja); 
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.box-flag img{
+    width: 43px;
+    height: 43px;
+}
+
+.box-flag .labels{
+    display: flex;
+    flex-direction: column;
+}
+
+.box-flag label{
+   font-size: 12px;
+}
+.box-flag label b{
+   font-size: 15px;
+}
+
+.box-flag input[type="radio"]{
+    width: 16px; 
+    height: 16px; 
+}
+
+.box-list-carrinho{
+    width: 100%;
+    border: 2px solid var(--laranja);
+    padding: 40px;
+    border-radius: 40px;
+}
+
+.box-list-carrinho h2{
+    font-size: 40px;
+    font-weight: 400;
+    font-family: 'Modak';
+    color: var(--cinza);
+}
+
+.box-list-carrinho table{
+    width: 100%;
+    font-size: 20px;
+}
+
+.box-list-carrinho table td, 
+.box-list-carrinho table th{
+   padding: 10px;
+}

@@ -36,26 +36,22 @@
 
         <!-- SERVIÇOS -->
         <section>
-            <div style="width: 100%; display: flex; gap: 20px; overflow-x: auto;">
+            <div style="width: 100%; display: flex; gap: 40px; overflow-x: auto;">
                 <% for (Servico servico : servicos) {%>
                 <div class="box-servico">
-                    <div class="servico-item">
-                        <div class="img">
-                            <img src="${pageContext.request.contextPath}/assets/servicos/<%= servico.getFoto()%>" height="100%">
+                    <img src="${pageContext.request.contextPath}/assets/servicos/<%= servico.getFoto()%>" >
+                    <div class="servico-content">
+                        <div class="servico-titulo">
+                            <b><%= servico.getNome()%></b>
+                        </div>
+                        <div class="servico-descricao">
+                            <%= servico.getDescricao()%>
+                        </div>
+                        <div class="servico-preco">
+                            <b>A partir de R$ <%= servico.getValor()%></b>
                         </div>
                     </div>
-                    <div class="servico-item">
-                        <b><%= servico.getNome()%></b>
-                    </div>
-                    <div class="servico-item descricao">
-                        <%= servico.getDescricao()%>
-                    </div>
-                    <div class="servico-item">
-                        <b>A partir de R$ <%= servico.getValor()%></b>
-                    </div>
-                    <div class="servico-item servico-btn">
-                        <a href="list/servico/">Agende Online</a>
-                    </div>
+                        <a href="list/servico/" class="servico-btn">Agende Online</a>
                 </div>
                 <% } %>
             </div>

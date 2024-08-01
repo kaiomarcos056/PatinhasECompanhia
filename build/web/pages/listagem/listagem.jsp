@@ -52,9 +52,9 @@
                 Tudo o que é essencial para a vida do seu cachorro tem na Patinhas&Companhia! Se você é tutor de primeira viagem ou já tem muitos peludos em casa, deve estar sempre com atenção redobrada às necessidades e cuidados básicos. Afinal, o importante é nossos amigos estarem felizes e saudáveis, não é mesmo?
             </p>
         </section>
-
+            
         <br>
-
+            
         <section>
             <% if (especie != null) {%>
             <div>
@@ -75,12 +75,10 @@
                         </a>
                     </li>
                 </ul>
+                <br>
             </div>
-
-            <br>
-
             <% } %>
-
+            <br>
             <div style="display: flex; gap: 30px; flex-wrap: wrap;">
                 <% if (produtos != null && produtos.size() > 0) { %>
                 <% for (Produto produto : produtos) {%>
@@ -104,36 +102,36 @@
                 <% } %>
                 <% } else if (servicos != null && servicos.size() > 0) { %>
                 <% for (Servico servico : servicos) {%>
-                <table border="1" style="width: 300px; height: 380px;">
-                    <tr>
-                        <td>
-                            <img src="${pageContext.request.contextPath}/assets/servicos/<%= servico.getFoto()%>" width="100%">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b><%= servico.getNome()%></b></td>
-                    </tr>
-                    <tr>
-                        <td><%= servico.getDescricao()%></td>
-                    </tr>
-                    <tr>
-                        <td><b>A partir de R$ <%= servico.getValor()%></b></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="list/servico/">Agende Online</a>
-                        </td>
-                    </tr>
-                </table>
+                
+                <div class="box-servico">
+                    <img src="${pageContext.request.contextPath}/assets/servicos/<%= servico.getFoto()%>" >
+                    <div class="servico-content">
+                        <div class="servico-titulo">
+                            <b><%= servico.getNome()%></b>
+                        </div>
+                        <div class="servico-descricao">
+                            <%= servico.getDescricao()%>
+                        </div>
+                        <div class="servico-preco">
+                            <b>A partir de R$ <%= servico.getValor()%></b>
+                        </div>
+                    </div>
+                        <a href="list/servico/" class="servico-btn">Agende Online</a>
+                </div>
+                    
                 <% } %>
                 <% } else { %>
                 <h1>Nenhum produto encontrado.</h1>
                 <% }%>
             </div>
         </section>
+            
         <br>
         <br>
         <br>
         <br>
+        <br>
+        <br>
+        
     </body>
 </html>

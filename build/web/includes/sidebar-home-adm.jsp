@@ -1,8 +1,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sidebar-home-adm.css">
-<div id="sidebar-home-adm" style="z-index: 10;">
-    <div class="sidebar-home-logo">
-        <img src="${pageContext.request.contextPath}/assets/logo-white.svg">
-    </div>
+<div id="sidebar-home-adm">
+    
     <div class="sidebar-home-menu">
         <ul>
             

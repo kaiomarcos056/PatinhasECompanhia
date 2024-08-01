@@ -42,7 +42,5 @@
         </li>
     </ul>
 </nav>
-
-<br><br>
                 
 <%@ include file="/includes/sidebar.jsp" %>
