@@ -16,26 +16,25 @@
         <!-- MENU -->
         <%@ include file="/includes/menu.jsp" %>
         
-        <br>
-        <label style="padding-left: 20px;">Bem-Vindo $NOME.</label>
-        <br><br>
+        <!-- BEM-VINDO -->
+        <%@ include file="/includes/bem-vindo.jsp" %>
         
-        <section style="display: flex; gap: 20px;"> 
+        <section class="home-section"> 
             
             <!-- MENU LATERAL -->
             <%@ include file="/includes/sidebar-home-adm.jsp" %>
 
-            <div class="home-content" style="width: 100%;">
-                <div style="display: flex; align-content: center; justify-content: space-between;">
+            <div class="home-content">
+                <div class="home-titulo">
                     <h1>Usuarios</h1>
-                    <a href="new" style="align-self: center;">Novo Usuario</a>
+                    <a href="new" class="btn-link-home">Novo Usuario</a>
                 </div>
                 
                 <br>
 
-                <form action="list" method="GET" style="display: flex; gap: 20px;">
+                <form action="list" method="GET" class="form-pesquisa">
                     <input type="text" name="usuario" placeholder="Usuario">
-                    <button type="submit" class="">Pesquisar</button>
+                    <button type="submit" class="btn-home">Pesquisar</button>
                 </form>
                 <br>
 
@@ -53,18 +52,15 @@
                         <th>Endereco</th>
                         <th>Email</th>
                         <th>Senha</th>
-                        <th>Administrador</th>
+                        <th>Admin</th>
                         <th colspan="2">Ação</th>
                     </tr>
-                    <%
-                        if (usuarios == null) {
-                    %>
+                    <% if (usuarios == null) { %>
                     <tr>
                         <td colspan="3">Usuarios não encontradas.</td>
                     </tr>
-                    <% } else {
-                        for (Usuario usuario : usuarios) {
-                    %>
+                    <% } else { %>
+                    <% for (Usuario usuario : usuarios) { %>
                     <tr>
                         <td><%= usuario.getId()%></td>
                         <td><%= usuario.getNome()%></td>
@@ -74,19 +70,22 @@
                         <td><%= usuario.isAdministrador()%></td>
                         <td>
                             <a href="edit?id=<%= usuario.getId()%>" class="edit">
-                                Editar
+                                <i class="fa-solid fa-pen"></i> Editar
                             </a>
                         </td>
                         <td>
                             <a href="delete?id=<%= usuario.getId()%>" class="remove">
-                                Excluir
+                                <i class="fa-regular fa-trash-can"></i> Excluir
                             </a>
                         </td>
                     </tr>
-                    <% }
-                    }%>
+                    <% } %>
+                    <% } %>
                 </table>
             </div>
         </section>
+                
+        <br><br><br><br>
+                
     </body>
 </html>

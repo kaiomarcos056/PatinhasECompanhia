@@ -208,15 +208,21 @@ public class ProdutoServlet extends HttpServlet {
             
             Part filePart = request.getPart("foto");
             String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            
+            boolean mudaFoto = false;
             if (fileName == null || fileName.equals("")) {
                 fileName = "default.png";
             }
             else{
                 fileName = dataAtual+"_"+fileName;
+                mudaFoto = true;
             }
             String filePath = caminhoUpload + File.separator + fileName;
             
             Integer id = Integer.valueOf(request.getParameter("id"));
+            
+            Produto oldProd = produtoDAO.selectById(id);
+            
             String nome = request.getParameter("nome");
             Double valor = Double.valueOf(request.getParameter("valor"));
             Integer quantidade = Integer.valueOf(request.getParameter("quantidade"));
@@ -227,7 +233,11 @@ public class ProdutoServlet extends HttpServlet {
             Produto produto = new Produto();
             produto.setId(id);
             produto.setNome(nome);
-            produto.setFoto(fileName);
+            if(!mudaFoto) { 
+                produto.setFoto(oldProd.getFoto()); 
+            }else{
+                produto.setFoto(fileName); 
+            }
             produto.setValor(valor);
             produto.setQuantidade(quantidade);
             produto.setIdCategoria(categoria);

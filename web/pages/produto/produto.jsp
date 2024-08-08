@@ -12,90 +12,105 @@
         <title>Produto</title>
     </head>
     <body>
-        <div class="container" style="display: flex;">
+
+        <!-- MENU -->
+        <%@ include file="/includes/menu.jsp" %>
+        
+        <!-- BEM-VINDO -->
+        <%@ include file="/includes/bem-vindo.jsp" %>
+        
+        <section class="home-section"> 
+            <!-- MENU LATERAL -->
             <%@ include file="/includes/sidebar-home-adm.jsp" %>
 
-            <div class="home-content" style="width: 100%; height: 100vh; display: flex; flex-direction: column;">
-
-                <div style="width: 100%; padding: 10px; box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 2px -2px; z-index: 8;">
-                    <h3>Bem-Vindo</h3>
+            <!-- CONTEUDO -->
+            <div class="home-content">
+                <!-- TITULO DA PAGINA -->
+                <div class="home-titulo">
+                    <h1>Produtos</h1>
+                    <a href="new" class="btn-link-home">Novo Produto</a>
                 </div>
 
-                <div style="width: 100%; padding: 10px; background-color: #04C4D9; color: white;">
-                    <h3><i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp; Produtos</h3>
-                </div>
+                <br>
 
-                <div style="width: 100%; padding: 50px; background-color: #F8F8F8; flex-grow: 1; margin: 0 auto; overflow-y: auto;">
+                <!-- PESQUISA -->
+                <form action="list" method="GET" class="form-pesquisa">
+                    <input type="text" name="produto" placeholder="produto">
+                    <button type="submit" class="btn-home" >Pesquisar</button>
+                </form>
 
-                    <a href="new" class="">Novo Produto</a>
+                <br>
 
-                    <br>
-                    <br>
+                <!-- MENSGEM DE CADASTRO -->
+                <% if (msg != null) {%>
+                <p><%= msg%></p>
+                <%
+                        session.removeAttribute("msg");
+                    }
+                %>
+                
+                <br>
+                
+                <!-- TABELA -->
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; width: 100%">
+                <% if (produtos == null) { %>
+                <p>Nenhum produto cadastrado.</p>
+                <% } else { %>
+                <%for (Produto produto : produtos) {%>
 
-                    <form action="list" method="GET">
-                        <div style="display: flex; gap: 20px;">
-                            <input type="text" name="produto" placeholder="produto">
-                            <button type="submit" class="">Pesquisar</button>
-                        </div>
-                    </form>
-
-                    <br><br>
-
-                    <% if (msg != null) {%>
-                    <p><%= msg%></p>
-                    <%
-                            session.removeAttribute("msg");
-                        }
-                    %>
-
-                    <section style="width: 100%; display: flex; gap: 37px; flex-wrap: wrap;">
-                        <%
-                            if (produtos == null) {
-                        %>
-                        <p>Nenhum produto cadastrado.</p>
-                        <% } else {
-                            for (Produto produto : produtos) {
-                        %>
-                        <table border="1" style="width: 262px; max-height: 380px;">
-                            <tr><td colspan="3"><img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>" alt="Descrição da imagem" width="100%"></td></tr>
+                <div class="box-produto" style="width: 400px; height: auto;">
+                    <div class="box-produto-item" style="align-self: center;">
+                        <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
+                    </div>
+                    <div class="box-produto-item">
+                        <table border="0" style="width: 100%;">
                             <tr>
                                 <td><b>Nome</b></td>
-                                <td><%= produto.getId()%></td>
-                                <td><%= produto.getNome()%></td>
+                                <td><%= produto.getId()%> - <%= produto.getNome()%></td>
                             </tr>
                             <tr>
-                                <td><b>Categoria:</b></td>
-                                <td><%= produto.getIdCategoria()%></td>
-                                <td><%= produto.getCategoria()%></td>
+                                <td><b>Categoria</b></td>
+                                <td><%= produto.getIdCategoria()%> - <%= produto.getCategoria()%></td>
                             </tr>
                             <tr>
-                                <td><b>Marca:</b></td>
-                                <td><%= produto.getIdMarca()%></td>
-                                <td><%= produto.getMarca()%></td>
+                                <td><b>Marca</b></td>
+                                <td><%= produto.getIdMarca()%> - <%= produto.getMarca()%></td>
                             </tr>
                             <tr>
-                                <td><b>Especie:</b></td>
-                                <td><%= produto.getIdEspecie()%></td>
-                                <td><%= produto.getEspecie()%></td>
+                                <td><b>Especie</b></td>
+                                <td><%= produto.getIdEspecie()%> - <%= produto.getEspecie()%></td>
                             </tr>
                             <tr>
                                 <td><b>Quantidade</b></td>
-                                <td colspan="2"><%= produto.getQuantidade()%></td>
+                                <td><%= produto.getQuantidade()%></td>
                             </tr>
                             <tr>
                                 <td><b>Valor</b></td>
-                                <td colspan="2"><%= produto.getValor()%></td>
+                                <td>R$ <%= produto.getValor()%></td>
                             </tr>
+
                             <tr>
-                                <td> <a href="edit?id=<%= produto.getId()%>" class="edit"> Editar </a> </td>
-                                <td colspan="2"> <a href="delete?id=<%= produto.getId()%>" class="remove"> Excluir </a> </td>
+                                <td colspan="2" style="text-align: center;"> 
+                                    <a href="edit?id=<%= produto.getId()%>" class="edit"> 
+                                        <i class="fa-solid fa-pen"></i>Editar 
+                                    </a> 
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="delete?id=<%= produto.getId()%>" class="remove"> 
+                                        <i class="fa-regular fa-trash-can"></i> Excluir 
+                                    </a>
+                                </td>
                             </tr>
                         </table>
-                        <% } }%>
-                    </section>
+                    </div>
                 </div>
-
+                            
+                <% } %>
+                <% }%>
+                </div>
             </div>
-        </div>
+        </section>
+            
+                <br><br><br><br>
+                
     </body>
 </html>

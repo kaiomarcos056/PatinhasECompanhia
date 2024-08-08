@@ -1,8 +1,3 @@
-<%
-    double frete = 4.0;
-    double total = frete;
-%>
-
 <div id="identificacao" class="city" style="display:none">
     <br><br>
     
@@ -16,18 +11,15 @@
         <div style="width: 900px; margin: 0 auto;">
             
             <label>Nome</label>
-            <input type="text" name="nome" placeholder="Kelvin Erick">
-            <br>
-            <br>
+            <input type="text" name="nome" placeholder="Kelvin Erick"><br><br>
+            
             <label>Email</label>
-            <input type="text" name="email" placeholder="erick@email.com">
-            <br>
-            <br>
+            <input type="text" name="email" placeholder="erick@email.com"><br><br>
+            
             <label>Telefone</label>
-            <input type="text" name="telefone" placeholder="(85) 94002-8922">
+            <input type="text" name="telefone" placeholder="(85) 94002-8922"><br><br>
             
-            <br><br><br>
-            
+            <br>
             
             <% if(carrinho != null) { %>
             <div class="box-list-carrinho">
@@ -85,14 +77,6 @@
                 
             </div>
             <% } %>
-
-            <br>
-            <br>
-            
-            <div style="display: flex; justify-content: space-between;">
-                <button>Voltar</button>
-                <button>Proximo</button>
-            </div>
             
             <br><br><br><br><br><br>
             

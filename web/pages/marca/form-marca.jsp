@@ -1,36 +1,54 @@
 <%@page import="Model.Marca"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    String label = "Cadastrar";
+    String action = "insert";
+    String value = "";
+
+    String rota = (String) request.getAttribute("rota");
+    Marca marca = (Marca) request.getAttribute("marca");
+
+    if ("/edit".equals(rota)) {
+        label = "Alterar";
+        action = "update?id=" + marca.getId();
+        value = marca.getDescricao();
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-        <% 
-            String label = "Cadastrar";
-            String action = "insert";
-            String value = "";
-            
-            String rota = (String) request.getAttribute("rota");
-            Marca marca = (Marca) request.getAttribute("marca");
-            
-            if("/edit".equals(rota)){
-                label = "Alterar";
-                action = "update?id="+marca.getId();
-                value = marca.getDescricao();
-            }
-            
-            //Categoria categoria = (Categoria) request.getAttribute("categoria");
-            
-            
-        %>
+        <%@ include file="/includes/header.jsp" %>
+        <title>Marca</title>
     </head>
     <body>
-        <a href="list">Voltar</a>
-        <h1><%= label %> Marca</h1>
-        <form action="<%= action %>" method="POST">
-            <label>Marca</label><br>
-            <input type="text" name="marca" placeholder="Nome da marca..." value="<%= value %>" required><br><br>
-            <input type="submit" value="<%= label %> Marca">
-        </form>
+        <!-- MENU -->
+        <%@ include file="/includes/menu.jsp" %>
+        
+        <!-- BEM-VINDO -->
+        <%@ include file="/includes/bem-vindo.jsp" %>
+        
+        <!-- SEÇÃO -->
+        <section class="home-section"> 
+            <!-- MENU LATERAL -->
+            <%@ include file="/includes/sidebar-home-adm.jsp" %>
+
+            <!-- CONTEUDO -->
+            <div class="home-content">
+                <!-- TITULO -->
+                <div class="home-titulo">
+                    <h1><%= label%> Marca</h1>
+                </div>
+
+                <!-- FORMULARIO -->
+                <form action="<%= action%>" method="POST">
+                    <label>Marca</label><br>
+                    <input type="text" name="marca" placeholder="Nome da marca..." value="<%= value%>" required><br><br>
+                    <input type="submit" value="<%= label%> Marca">
+                </form>
+            </div>
+        </section>
+
+        <!-- ESPAÇAMENTO FINAL -->
+        <br><br><br><br>
     </body>
 </html>

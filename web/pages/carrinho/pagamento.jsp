@@ -9,7 +9,7 @@
     <br>
     <br>    
     
-    <section style="width: 1186px; margin: 0 auto;">
+    <section>
                 
         <div style="width: 904px; margin: 0 auto;">
             
@@ -35,8 +35,7 @@
                         </td>
                         <td style="text-align: center;"> <%= item.getQuantidade() %> </td>
                         <td style="text-align: right;"> <p>R$ <%= item.getProduto().getValor() %></p> </td>
-                        <td style="text-align: right;"> <p>R$ <%= item.getProduto().getValor() * item.getQuantidade() %></p> </td>
-                        <% total += item.getProduto().getValor() * item.getQuantidade(); %>
+                        <td style="text-align: right;"> <p>R$ <%= item.getProduto().getValor() * item.getQuantidade() %></p> </td
                     </tr>
                 <% } %>
                 </table>
@@ -49,6 +48,7 @@
                         <td>
                             <b>Frete:</b>
                         </td>
+                        <input type="hidden" name="valor-frete" value="<%= frete %>">
                         <td style="text-align: right;"> <p>R$ <%= frete %></p> </td>
                     </tr>
                 </table>
@@ -58,6 +58,7 @@
                         <td>
                             <b>Total:</b>
                         </td>
+                        <input type="hidden" name="valor-total" value="<%= total %>">
                         <td style="text-align: right;"> <p>R$ <%= total %></p> </td>
                     </tr>
                 </table>
@@ -69,43 +70,45 @@
             <br>
             
             <h1>Cartão de crédito</h1>
-            
-            <form>
                 <table style="width: 100%">
                     <tr>
                         <td colspan="2"> <label>Número</label></td>
                     </tr>
                     <tr>
-                        <td colspan="2"> <input type="text" name="numero-card" style="width: 95%;" placeholder="1234 5678 9101 778"> </td>
+                        <td colspan="2"> <input type="text" name="numero-cartao" style="width: 95%;" placeholder="1234 5678 9101 778"> </td>
                     </tr>
                     <tr>
                         <td colspan="2" <label>Nome impresso no cartão</label></td>
                     </tr>
                     <tr>
-                        <td colspan="2"> <input type="text" name="nome-card" style="width: 95%;" placeholder="CARTAO"><br></td>
+                        <td colspan="2"> <input type="text" name="nome-cartao" style="width: 95%;" placeholder="CARTAO"><br></td>
                     </tr>
                     <tr>
                         <td> <label>CPF do Titular</label></td>
                         <td> <label>Validade</label></td>
                     </tr>
                     <tr>
-                        <td> <input type="text" name="cpf" style="width: 90%;" placeholder="123.456.789-00"></td>
+                        <td> <input type="text" name="cpf-titular" style="width: 90%;" placeholder="123.456.789-00"></td>
                         <td> <input type="text" name="validade" style="width: 90%;" placeholder="08/23"></td>
                     </tr>
                     <tr>
                         <td> <label>CVV</label></td>
                     </tr>
                     <tr>
-                        <td> <input type="text" name="endereco" style="width: 90%;"><br></td>
+                        <td> <input type="text" name="cvv" style="width: 90%;"><br></td>
                     </tr>
                 </table>
-            </form>
             
             <br>
             <br>
             <br>
             
-            <button class="tab-button" onclick="openCity('final-compra');changeBorder(this)">Finalizar compra</button>
+            <!--<button class="tab-button" onclick="openCity('final-compra');changeBorder(this)">Finalizar compra</button>-->
+            
+           <input type="submit" name="name">
+           
+           <!-- FIM FORM CRIAR COMPRA -->
+           </form>
         </div>
         
     </section>

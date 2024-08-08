@@ -37,19 +37,21 @@
         <!-- MENU -->
         <%@ include file="/includes/menu.jsp" %>
 
-        <br>
-        <label style="padding-left: 20px;">Bem-Vindo $NOME.</label>
-        <br><br>
+        <!-- BEM-VINDO -->
+        <%@ include file="/includes/bem-vindo.jsp" %>
 
         <section style="display: flex; gap: 20px;"> 
             <!-- MENU LATERAL -->
             <%@ include file="/includes/sidebar-home-adm.jsp" %>
 
             <div class="home-content" style="width: 100%;">
+                
                 <h1><%= label%> Usuario</h1>
+                <br>
+                
                 <form action="<%= action%>" method="POST">
                     <label>Nome</label><br>
-                    <input type="text" name="nome" value="<%= nome%>" placeholder="Kelvin Erick" required><br>
+                    <input type="text" name="nome" value="<%= nome%>" placeholder="Kelvin Erick" required><br><br>
 
                     <label>Administrador</label><br>
                     <select name="adm">
@@ -60,19 +62,19 @@
                         <option value="false" selected>não</option>
                         <option value="true">sim</option>
                         <% }%>
-                    </select><br>
+                    </select><br><br>
 
                     <label>Endereço</label><br>
-                    <input type="text" name="endereco" value="<%= endereco%>"  placeholder="Rua A"><br>
+                    <input type="text" name="endereco" value="<%= endereco%>"  placeholder="Rua A"><br><br>
 
                     <label>E-mail</label><br>
-                    <input type="text" name="email" value="<%= email%>" placeholder="erick@email.com" required><br>
+                    <input type="text" name="email" value="<%= email%>" placeholder="erick@email.com" required><br><br>
 
                     <label>Senha</label><br>
-                    <input type="password" name="senha" value="<%= senha%>" placeholder="******" required><br>
+                    <input type="password" name="senha" value="<%= senha%>" placeholder="******" required><br><br>
 
                     <label>Confirmar Senha</label><br>
-                    <input type="password" name="confirm-senha" placeholder="******" required><br>
+                    <input type="password" name="confirm-senha" placeholder="******" required><br><br>
 
                     <label>Padrão de Senha</label>
                     <ul>

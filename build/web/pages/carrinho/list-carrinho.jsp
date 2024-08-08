@@ -48,10 +48,11 @@
             <h2>Frete e Prazo</h2>
             
             <br>
+            <!-- INICIO FORM CRIAR COMPRA -->
+            <form action="carrinho/new" method="GET">
+            <input type="text" name="busca-cep" placeholder="Digite seu CEP"><br><br>
             
-            <input type="text" name="name" placeholder="Digite seu CEP"><br><br>
-            
-            <button>Buscar</button>
+            <button onclick="disableButton()" id="btn-busca-cep">Buscar</button>
             
             <br><br><br><br><br><br>
             
@@ -61,7 +62,7 @@
                     <label><b>Retire na loja</b></label>
                     <label>Pedido pronto em 5 dias úteis</label>
                 </div>
-                <input type="radio" name="frete">
+                <input type="radio" name="tipo-frete" value="R" checked>
             </div>
                 
             <br>
@@ -72,17 +73,16 @@
                     <label><b>Econômico</b></label>
                     <label>Entrega padrão de 5 a 20 dias</label>
                 </div>
-                <input type="radio" name="frete">
+                <input type="radio" name="tipo-frete" value="E">
             </div>
         </div>
                 
     </div>
     
-    <br><br>
-    
-    <div style="display: flex; justify-content: flex-end;">
-        <button>Proximo</button>
-    </div>
-    
     <br><br><br><br><br><br>
+    <script>
+        function disableButton() {
+            document.getElementById("btn-busca-cep").disabled = true;
+        }
+    </script>
 </div>

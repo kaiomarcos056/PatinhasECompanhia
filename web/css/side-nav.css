@@ -11,7 +11,7 @@
 }
 
 .sidenav-header{
-    background-color: #F28705;
+    background-color: var(--laranja);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -31,8 +31,35 @@
     font-weight: 700;
 }
 
+.sidenav-body li {
+   padding: 10px;
+}
+
 .sidenav-line{
     margin-top: 10px;
     border-bottom: 2px solid #04C4D9;
     margin-bottom: 10px;
+}
+
+.sidenav-header a {
+    font-size: 30px;
+    text-decoration: none;
+    color: white;
+}
+
+.sidenav-header a:hover {
+    color: var(--azul);
+}
+
+.sidenav-body a{
+    text-decoration: none;
+    color: var(--azul);
+}
+
+.sidenav-body a:hover{
+    color: var(--laranja);
+}
+
+.sidenav-titulo {
+    color: var(--laranja);
 }

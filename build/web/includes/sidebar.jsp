@@ -7,11 +7,12 @@
             <p>Entre ou cadastre-se</p>
         </div>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
-            <h1>X</h1>
+            <h2>X</h2>
         </a>
     </div>
     <div class="sidenav-body">
         <ul>
+            <li class="sidenav-titulo">Espécies</li>
             <li>
                 <a href="${pageContext.request.contextPath}/list/produto?especie=3&categoria=3">
                     Cachorros
@@ -26,10 +27,7 @@
         </ul>
         <div class="sidenav-line"></div>
         <ul>
-            <li>Marcas</li>
-        </ul>
-        <div class="sidenav-line"></div>
-        <ul>
+            <li class="sidenav-titulo">Serviços</li>
             <li>
                 <a href="${pageContext.request.contextPath}/list/servico?&categoria=10">
                 Serviços Pet

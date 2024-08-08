@@ -5,6 +5,8 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    String idCategoria = request.getParameter("categoria");
+    
     Especie especie = (Especie) request.getAttribute("especie");
     Categoria categoria = (Categoria) request.getAttribute("categoria");
     List<Produto> produtos = (List<Produto>) request.getAttribute("produtos");
@@ -18,7 +20,7 @@
     </head>
     <body>
         <%@ include file="/includes/menu.jsp" %>
-
+        <br><br>
         <section>
             <div style="display: flex; justify-content: space-between">
                 <div style="display: flex; align-items: center;">
@@ -31,9 +33,9 @@
                     <label>&nbsp;&nbsp;&nbsp; <%= categoria.getDescricao()%></label>
                 </div>
 
-                <div>
+                <div style="display: flex; align-items: center;">
                     <label>Ordenar por: &nbsp;</label>
-                    <select>
+                    <select style="width: 200px;">
                         <option>Mais relevantes</option>
                     </select>
                 </div>
@@ -53,24 +55,24 @@
             </p>
         </section>
             
-        <br>
+            <br><br>
             
         <section>
             <% if (especie != null) {%>
             <div>
                 <ul style="list-style: none; display: flex; gap: 30px; padding: 0;">
                     <li>
-                        <a href="produto?especie=<%= especie.getId()%>&categoria=3">
+                        <a href="produto?especie=<%= especie.getId()%>&categoria=3" class="<% if(idCategoria.toString().equals("3")) { %> btn-tab-selected <% } else { %> btn-tab <% } %>">
                             Ração
                         </a>
                     </li>
                     <li>
-                        <a href="produto?especie=<%= especie.getId()%>&categoria=4">
+                        <a href="produto?especie=<%= especie.getId()%>&categoria=4" class="<% if(idCategoria.toString().equals("4")) { %> btn-tab-selected <% } else { %> btn-tab <% } %>">
                             Brinquedos
                         </a>
                     </li>
                     <li>
-                        <a href="produto?especie=<%= especie.getId()%>&categoria=9">
+                        <a href="produto?especie=<%= especie.getId()%>&categoria=9" class="<% if(idCategoria.toString().equals("9")) { %> btn-tab-selected <% } else { %> btn-tab <% } %>">
                             Medicamentos
                         </a>
                     </li>

@@ -23,7 +23,10 @@
     <body>
         <!-- MENU -->
         <%@ include file="/includes/menu.jsp" %>
-
+         
+        <br>
+        <br>
+        
         <!-- BANNER -->
         <section>
             <div class="banner">

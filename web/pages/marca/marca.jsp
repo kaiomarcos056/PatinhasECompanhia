@@ -1,66 +1,87 @@
 <%@page import="java.util.List"%>
 <%@page import="Model.Marca"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    String msg = (String) session.getAttribute("msg");
+    List<Marca> marcas = (List<Marca>) request.getAttribute("marcas");
+%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@ include file="/includes/header.jsp" %>
         <title>Marca</title>
-        
-        <%
-            String msg = (String) session.getAttribute("msg");
-            List<Marca> marcas = (List<Marca>) request.getAttribute("marcas");
-        %>
     </head>
     <body>
-        <a href="<%=request.getContextPath()%>/dashboard/">Voltar</a>
-        <h1>Marcas</h1>
-        <a href="new">Nova Marca</a>
-        <br><br>
+        <!-- MENU -->
+        <%@ include file="/includes/menu.jsp" %>
         
-        <form action="list" method="GET">
-            <input type="text" name="marca" placeholder="Marca">
-            <button type="submit" class="">Pesquisar</button>
-        </form>
-        <br>
+        <!-- BEM-VINDO -->
+        <%@ include file="/includes/bem-vindo.jsp" %>
         
-        <% if(msg != null){ %>
-                <p><%= msg %></p>
-        <%      
-                session.removeAttribute("msg"); 
-            }
-        %>
+        <section class="home-section"> 
+            <!-- MENU LATERAL -->
+            <%@ include file="/includes/sidebar-home-adm.jsp" %>
         
-        <table border="1">
+            <!-- CONTEUDO -->
+            <div class="home-content">
+                <!-- TITULO DA PAGINA -->
+                <div class="home-titulo">
+                    <h1>Marcas</h1>
+                    <a href="new" class="btn-link-home" >Nova Marca</a>
+                </div>
+                
+                <br>
+                
+                <!-- PESQUISA -->
+                <form action="list" method="GET" class="form-pesquisa">
+                    <input type="text" name="marca" placeholder="Marca">
+                    <button type="submit" class="btn-home" >Pesquisar</button>
+                </form>
+                
+                <br>
+                
+                <!-- MENSGEM DE CADASTRO -->
+                <% if(msg != null){ %>
+                    <p><%= msg %></p>
+                <%      
+                    session.removeAttribute("msg"); 
+                    }
+                %>
+                
+                <!-- TABELA -->
+                <table class="tabela-home">
                 <tr>
                     <th>ID</th>
                     <th>Marca</th>
                     <th colspan="2">Ação</th>
                 </tr>
-                <%
-                    if(marcas == null){
-                %>
+                <% if(marcas == null){ %>
                     <tr>
                         <td colspan="3">Marcas não encontradas.</td>
                     </tr>
-                <% } else {
-                    for (Marca marca : marcas) {
-                %>
+                <% } else { %>
+                    <% for (Marca marca : marcas) { %>
                     <tr>
                         <td><%= marca.getId() %></td>
                         <td><%= marca.getDescricao()%></td>
                         <td>
                             <a href="edit?id=<%= marca.getId() %>" class="edit">
-                                Editar
+                                <i class="fa-solid fa-pen"></i> Editar
                             </a>
                         </td>
                         <td>
                             <a href="delete?id=<%= marca.getId() %>" class="remove">
-                                Excluir
+                                <i class="fa-regular fa-trash-can"></i> Excluir
                             </a>
                         </td>
                     </tr>
-                <% } } %>
-        </table>
+                    <% } %>
+                <% } %>
+                </table>
+            </div>
+        </section>
+                
+                <br><br><br><br>
+                
     </body>
 </html>
