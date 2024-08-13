@@ -30,7 +30,47 @@ public class ProdutoDAO {
 "INNER JOIN ESPECIE ESP ON ESP.ID_ESPECIE = PROD.ID_ESPECIE "
             + "ORDER BY PROD.ID_PRODUTO DESC";
     
+        private static final String SELECT_PRODUTO_DIFERENTE_ZERO = "SELECT\n" +
+"	PROD.ID_PRODUTO, \n" +
+"	PROD.NOME AS NOME_PROD,\n" +
+"	PROD.VALOR,\n" +
+"	PROD.QUANTIDADE, \n" +
+"	PROD.NOME_FOTO, \n" +
+"	PROD.SERVICO, \n" +
+"	PROD.ID_MARCA, \n" +
+"	MARC.DESCRICAO AS DESC_MARCA,\n" +
+"	PROD.ID_CATEGORIA, \n" +
+"	CAT.DESCRICAO AS DESC_CATEGORIA, \n" +
+"	PROD.ID_ESPECIE, \n" +
+"	ESP.DESCRICAO AS DESC_ESPECIE\n" +
+"FROM PRODUTO PROD\n" +
+"INNER JOIN CATEGORIA CAT ON CAT.ID_CATEGORIA = PROD.ID_CATEGORIA\n" +
+"INNER JOIN MARCA MARC ON MARC.ID_MARCA = PROD.ID_MARCA \n" +
+"INNER JOIN ESPECIE ESP ON ESP.ID_ESPECIE = PROD.ID_ESPECIE "
+                + "WHERE PROD.QUANTIDADE > 0"
+            + "ORDER BY PROD.ID_PRODUTO DESC";
+    
     private static final String SELECT_PRODUTO_POR_NOME = "SELECT\n" +
+"	PROD.ID_PRODUTO, \n" +
+"	PROD.NOME AS NOME_PROD,\n" +
+"	PROD.VALOR,\n" +
+"	PROD.QUANTIDADE, \n" +
+"	PROD.NOME_FOTO, \n" +
+"	PROD.SERVICO, \n" +
+"	PROD.ID_MARCA, \n" +
+"	MARC.DESCRICAO AS DESC_MARCA,\n" +
+"	PROD.ID_CATEGORIA, \n" +
+"	CAT.DESCRICAO AS DESC_CATEGORIA, \n" +
+"	PROD.ID_ESPECIE, \n" +
+"	ESP.DESCRICAO AS DESC_ESPECIE\n" +
+"FROM PRODUTO PROD\n" +
+"INNER JOIN CATEGORIA CAT ON CAT.ID_CATEGORIA = PROD.ID_CATEGORIA\n" +
+"INNER JOIN MARCA MARC ON MARC.ID_MARCA = PROD.ID_MARCA \n" +
+"INNER JOIN ESPECIE ESP ON ESP.ID_ESPECIE = PROD.ID_ESPECIE "
+            + "WHERE UPPER(PROD.NOME) LIKE UPPER(?)"
+            + "ORDER BY PROD.ID_PRODUTO DESC";
+    
+        private static final String SELECT_ALL_PRODUTO_POR_NOME = "SELECT\n" +
 "	PROD.ID_PRODUTO, \n" +
 "	PROD.NOME AS NOME_PROD,\n" +
 "	PROD.VALOR,\n" +
@@ -87,7 +127,8 @@ public class ProdutoDAO {
 "INNER JOIN MARCA MARC ON MARC.ID_MARCA = PROD.ID_MARCA \n" +
 "INNER JOIN ESPECIE ESP ON ESP.ID_ESPECIE = PROD.ID_ESPECIE\n" +
 "WHERE 1 = 1\n" +
-"AND PROD.ID_CATEGORIA = ?\n" +
+"AND PROD.ID_CATEGORIA = ?\n "
+            + "AND PROD.QUANTIDADE > 0 " +
 "ORDER BY PROD.ID_PRODUTO DESC";
     
     private static final String SELECT_PRODUTO_POR_ESPECIE = "SELECT\n" +
@@ -108,7 +149,8 @@ public class ProdutoDAO {
 "INNER JOIN MARCA MARC ON MARC.ID_MARCA = PROD.ID_MARCA \n" +
 "INNER JOIN ESPECIE ESP ON ESP.ID_ESPECIE = PROD.ID_ESPECIE\n" +
 "WHERE 1 = 1\n" +
-"AND PROD.ID_ESPECIE = ?\n" +
+"AND PROD.ID_ESPECIE = ?\n "
+            + "AND PROD.QUANTIDADE > 0 " +
 "ORDER BY PROD.ID_PRODUTO DESC";
     
         private static final String SELECT_PRODUTO_POR_CATEGORIA_E_ESPECIE = "SELECT\n" +
@@ -130,7 +172,7 @@ public class ProdutoDAO {
 "INNER JOIN ESPECIE ESP ON ESP.ID_ESPECIE = PROD.ID_ESPECIE\n" +
 "WHERE 1 = 1\n" +
 "AND PROD.ID_CATEGORIA = ?\n" +
-"AND PROD.ID_ESPECIE = ?\n" +
+"AND PROD.ID_ESPECIE = ?\n AND PROD.QUANTIDADE > 0 " +
 "ORDER BY PROD.ID_PRODUTO DESC";
         
     private static final String INSERIR_PRODUTO = "INSERT INTO PRODUTO(NOME, NOME_FOTO, VALOR, QUANTIDADE, ID_MARCA, ID_CATEGORIA, ID_ESPECIE, SERVICO) "
@@ -142,6 +184,47 @@ public class ProdutoDAO {
     private static final String DELETE_PRODUTO = "DELETE FROM PRODUTO WHERE ID_PRODUTO = ?";
     
     public List<Produto> select() throws SQLException {
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        
+        List<Produto> produtos = new ArrayList<>();
+        
+        try{
+            conexao = Conexao.getConexao();
+            ps = conexao.prepareStatement(SELECT_PRODUTO_DIFERENTE_ZERO);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                
+                produto.setId(rs.getInt("ID_PRODUTO"));
+                produto.setNome(rs.getString("NOME_PROD"));
+                produto.setFoto(rs.getString("NOME_FOTO"));
+                produto.setValor(rs.getDouble("VALOR"));
+                produto.setQuantidade(rs.getInt("QUANTIDADE"));
+                produto.setIdMarca(rs.getInt("ID_MARCA"));
+                produto.setMarca(rs.getString("DESC_MARCA"));
+                produto.setIdCategoria(rs.getInt("ID_CATEGORIA"));
+                produto.setCategoria(rs.getString("DESC_CATEGORIA"));
+                produto.setIdEspecie(rs.getInt("ID_ESPECIE"));
+                produto.setEspecie(rs.getString("DESC_ESPECIE"));
+                
+                produtos.add(produto);
+            }
+            
+            return produtos;
+        }
+        catch(Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+        finally {
+            ps.close();
+            conexao.close();
+        }
+    }
+    
+    public List<Produto> selectAll() throws SQLException {
         Connection conexao = null;
         PreparedStatement ps = null;
         
@@ -322,6 +405,49 @@ public class ProdutoDAO {
             conexao = Conexao.getConexao();
             
             ps = conexao.prepareStatement(SELECT_PRODUTO_POR_NOME);
+            ps.setString(1, "%" + nome + "%");
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                
+                produto.setId(rs.getInt("ID_PRODUTO"));
+                produto.setNome(rs.getString("NOME_PROD"));
+                produto.setFoto(rs.getString("NOME_FOTO"));
+                produto.setValor(rs.getDouble("VALOR"));
+                produto.setQuantidade(rs.getInt("QUANTIDADE"));
+                produto.setIdMarca(rs.getInt("ID_MARCA"));
+                produto.setMarca(rs.getString("DESC_MARCA"));
+                produto.setIdCategoria(rs.getInt("ID_CATEGORIA"));
+                produto.setCategoria(rs.getString("DESC_CATEGORIA"));
+                produto.setIdEspecie(rs.getInt("ID_ESPECIE"));
+                produto.setEspecie(rs.getString("DESC_ESPECIE"));
+                
+                produtos.add(produto);
+            }
+            
+            return produtos;
+        }
+        catch(Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+        finally {
+            ps.close();
+            conexao.close();
+        }
+    }
+    
+    public List<Produto> selectByAllProduto(String nome) throws SQLException {
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        
+        List<Produto> produtos = new ArrayList<>();
+        
+        try{
+            conexao = Conexao.getConexao();
+            
+            ps = conexao.prepareStatement(SELECT_ALL_PRODUTO_POR_NOME);
             ps.setString(1, "%" + nome + "%");
             
             ResultSet rs = ps.executeQuery();

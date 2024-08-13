@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Model.Servico"%>
 <%@page import="DAO.ServicoDAO"%>
 <%@page import="Model.Usuario"%>
@@ -7,12 +8,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     ServicoDAO servicoDAO = new ServicoDAO();
+    
     ProdutoDAO prodDAO = new ProdutoDAO();
+    
     List<Produto> racoes = prodDAO.selectByCategoria(3); // RAÇÃO = ID 3
     List<Produto> brinquedos = prodDAO.selectByCategoria(4); // BRINQUEDOS = ID 4
     List<Produto> medicamentos = prodDAO.selectByCategoria(9); // MEDICAMENTO = ID 9
+    
     List<Servico> servicos = servicoDAO.select();
+    
     Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+    
+    DecimalFormat df = new DecimalFormat("###,##0.00");
 %>
 <!DOCTYPE html>
 <html>
@@ -24,8 +31,7 @@
         <!-- MENU -->
         <%@ include file="/includes/menu.jsp" %>
          
-        <br>
-        <br>
+        <br><br>
         
         <!-- BANNER -->
         <section>
@@ -35,7 +41,7 @@
             </div>
         </section>
 
-        <br><br> 
+        <br><br><br>
 
         <!-- SERVIÇOS -->
         <section>
@@ -51,7 +57,7 @@
                             <%= servico.getDescricao()%>
                         </div>
                         <div class="servico-preco">
-                            <b>A partir de R$ <%= servico.getValor()%></b>
+                            <b>A partir de R$ <%= df.format(servico.getValor())%></b>
                         </div>
                     </div>
                         <a href="list/servico/" class="servico-btn">Agende Online</a>
@@ -60,7 +66,7 @@
             </div>
         </section>
 
-        <br><br>  
+        <br><br><br><br>
 
         <!-- PROMOÇÕES -->
         <section class="box-slide" >
@@ -79,7 +85,7 @@
             </div>
         </section>    
 
-        <br><br> 
+        <br><br><br><br>
 
         <!-- RAÇÕES -->
         <section class="box-slide">
@@ -97,7 +103,7 @@
                                 <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
                             </div>
                             <div class="box-produto-item"><h3><%= produto.getNome()%></h3></div>
-                            <div class="box-produto-item"><h2>R$ <%= produto.getValor()%></h2></div>
+                            <div class="box-produto-item"><h2>R$ <%= df.format(produto.getValor()) %></h2></div>
                             <div class="box-produto-item" style="align-self: end;">
                                 <button type="submit">
                                     <i class="fa-solid fa-cart-shopping"></i>
@@ -134,7 +140,7 @@
                                 <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
                             </div>
                             <div class="box-produto-item"><h3><%= produto.getNome()%></h3></div>
-                            <div class="box-produto-item"><h2>R$ <%= produto.getValor()%></h2></div>
+                            <div class="box-produto-item"><h2>R$ <%= df.format(produto.getValor())%></h2></div>
                             <div class="box-produto-item" style="align-self: end;">
                                 <button type="submit">
                                     <i class="fa-solid fa-cart-shopping"></i>
@@ -170,7 +176,7 @@
                             <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
                         </div>
                         <div class="box-produto-item"><h3><%= produto.getNome()%></h3></div>
-                        <div class="box-produto-item"><h2>R$ <%= produto.getValor()%></h2></div>
+                        <div class="box-produto-item"><h2>R$ <%= df.format(produto.getValor())%></h2></div>
                         <div class="box-produto-item" style="align-self: end;">
                             <button type="submit">
                                 <i class="fa-solid fa-cart-shopping"></i>

@@ -9,7 +9,9 @@
     <head>
 
         <%@ include file="/includes/header.jsp" %>
-
+        
+        <%@ include file="/includes/valida-formulario.jsp" %>
+        
         <title>Minha Conta</title>
 
     </head>
@@ -29,28 +31,23 @@
 
                 <h1>Minha Conta</h1>
                 <br>
-                <% if (msg != null) {%>
-                    <p><%= msg%></p>
-                <%
-                    session.removeAttribute("msg");
-                    }
-                %>
+                <% if (msg != null) {%> <p class="sucesso"><%= msg%></p><br> <% session.removeAttribute("msg"); } %>
                 
-                <form action="update" method="POST">
+                <form id="formConta" action="update" method="POST">
                     <label>Nome</label><br>
-                    <input type="text" name="nome" value="<%= usuario.getNome()%>" required><br><br>
+                    <input type="text" name="nome" value="<%= usuario.getNome()%>" ><br><br>
                     
                     <label>Endereço</label><br>
                     <input type="text" name="endereco" value="<%= usuario.getEndereco()%>""><br><br>
                     
                     <label>E-mail</label><br>
-                    <input type="text" name="email" value="<%= usuario.getEmail()%>" required><br><br>
+                    <input type="text" name="email" value="<%= usuario.getEmail()%>" ><br><br>
                     
                     <label>Senha</label><br>
-                    <input type="password" name="senha" value="<%= usuario.getSenha()%>" required><br><br>
+                    <input type="password" id="senha" name="senha" value="<%= usuario.getSenha()%>" ><br><br>
                     
                     <label>Confirmar Senha</label><br>
-                    <input type="password" name="confirm-senha" required><br><br>
+                    <input type="password" name="confirmaSenha" ><br><br>
                     <label>Padrão de Senha</label>
                     <ul>
                         <li>Mínimo 8 caracteres</li>

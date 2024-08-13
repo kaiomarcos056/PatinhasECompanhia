@@ -139,6 +139,26 @@ public class Carrinho {
         return valorCookie;
     }
     
+    public static final Integer obterQuantidadeCarrinho(int produtoId, String valor) throws SQLException {
+        // CRIANDO LISTA DE ITENS NO CARRINHO
+        List<CarrinhoItem> carrinhoItens = obterItensCarrinho(valor);
+        
+        Integer quantidade = null;
+        
+        // PERCORRENDO LISTA DE ITENS
+        for (CarrinhoItem carrinhoItem : carrinhoItens) {
+            
+            // VERIFICANDO SE ACHA O PRODUTO
+            if (carrinhoItem.getProduto().getId() == produtoId) {
+                // CASO ACHE RETORNA QUANTIDADE DO PRODUTO NO CARRINHO
+                quantidade = carrinhoItem.getQuantidade();
+                break;
+            }
+        }
+        
+        return quantidade;
+    }
+    
     public static final String excluirItem(int produtoId, String valor) throws SQLException {
         List<CarrinhoItem> carrinhoItens = obterItensCarrinho(valor);
         

@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String msg = (String) request.getAttribute("msg");
+    
+    String msgSession = (String) session.getAttribute("msg");
 %>
 <!DOCTYPE html>
 <html>
@@ -28,6 +30,7 @@
             <br>
             
             <% if (msg != null) {%> <p class="msg-erro"><%= msg%></p><br> <% }%>
+            <% if (msgSession != null) {%> <p class="sucesso"><%= msgSession%></p><br> <% }%>
             
             <form action="logar" method="POST">
                 <label>E-mail</label><br>

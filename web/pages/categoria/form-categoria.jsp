@@ -18,6 +18,7 @@
 <html>
     <head>
         <%@ include file="/includes/header.jsp" %>
+        <%@ include file="/includes/valida-formulario.jsp" %>
         <title>Categoria</title>
 
     </head>
@@ -39,9 +40,11 @@
                 <div class="home-titulo">
                     <h1><%= label%> Categoria</h1>
                 </div>
-
+                
+                <br>
+                
                 <!-- FORMULARIO -->
-                <form action="<%= action%>" method="POST">
+                <form id="formularioCategoria" action="<%= action%>" method="POST">
                     <label>Categoria</label><br>
                     <input type="text" name="categoria" placeholder="Nome da categoria..." value="<%= value%>" required><br><br>
                     <input type="submit" value="<%= label%> Categoria">

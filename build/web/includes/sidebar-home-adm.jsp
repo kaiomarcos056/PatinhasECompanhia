@@ -19,6 +19,14 @@
                     Meus Pedidos
                 </a>
             </li>
+            <li>
+                <a href="<%= request.getContextPath() %>/dashboard/favorito/list">
+                    &nbsp;&nbsp;
+                    <i class="fa-solid fa-heart"></i>
+                    &nbsp;&nbsp;&nbsp;
+                    Favoritos
+                </a>
+            </li>
             <% if(usu != null) { %>
             <% if(usu.isAdministrador()) { %>
             <li>
@@ -70,7 +78,7 @@
                 </a>
             </li>
             <li>
-                <a href="<%= request.getContextPath() %>/dashboard/servico/list" >
+                <a href="<%= request.getContextPath() %>/dashboard/pedido/list" >
                     &nbsp;&nbsp;
                     <i class="fa-solid fa-layer-group"></i>
                     &nbsp;&nbsp;

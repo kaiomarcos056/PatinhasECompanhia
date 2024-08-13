@@ -1,4 +1,4 @@
-<div id="identificacao" class="city" style="display:none">
+<div id="identificacao" class="aba" style="display:none">
     <br><br>
     
     <h1>Identificação</h1>
@@ -44,8 +44,8 @@
                             <h3><%= item.getProduto().getNome()%></h3>
                         </td>
                         <td style="text-align: center;"> <%= item.getQuantidade() %> </td>
-                        <td style="text-align: right;"> <p>R$ <%= item.getProduto().getValor() %></p> </td>
-                        <td style="text-align: right;"> <p>R$ <%= item.getProduto().getValor() * item.getQuantidade() %></p> </td>
+                        <td style="text-align: right;"> <p>R$ <%= df.format(item.getProduto().getValor()) %></p> </td>
+                        <td style="text-align: right;"> <p>R$ <%= df.format(item.getProduto().getValor() * item.getQuantidade()) %></p> </td>
                         <% total += item.getProduto().getValor() * item.getQuantidade(); %>
                     </tr>
                 <% } %>
@@ -60,7 +60,7 @@
                         <td>
                             <b>Frete:</b>
                         </td>
-                        <td style="text-align: right;"> <p>R$ <%= frete %></p> </td>
+                        <td style="text-align: right;"> <p>R$ <%= df.format(frete) %></p> </td>
                     </tr>
                 </table>
                     
@@ -71,7 +71,7 @@
                         <td>
                             <b>Total:</b>
                         </td>
-                        <td style="text-align: right;"> <p>R$ <%= total %></p> </td>
+                        <td style="text-align: right;"> <p>R$ <%= df.format(total) %></p> </td>
                     </tr>
                 </table>
                 

@@ -68,6 +68,10 @@
         <servlet-name>RelatorioServlet</servlet-name>
         <servlet-class>Controller.Relatorio.RelatorioServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FavoritoServlet</servlet-name>
+        <servlet-class>Controller.Favorito.FavoritoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioServlet</servlet-name>
         <url-pattern>/dashboard/usuario/*</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>RelatorioServlet</servlet-name>
         <url-pattern>/dashboard/relatorio/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FavoritoServlet</servlet-name>
+        <url-pattern>/dashboard/favorito/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

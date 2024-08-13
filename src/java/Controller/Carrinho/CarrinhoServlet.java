@@ -1,6 +1,7 @@
 package Controller.Carrinho;
 
 import DAO.PedidoDAO;
+import DAO.ProdutoDAO;
 import Model.Carrinho;
 import Model.CarrinhoItem;
 import Model.Cartao;
@@ -8,6 +9,7 @@ import Model.CookieUtils;
 import Model.Endereco;
 import Model.ItemPedido;
 import Model.Pedido;
+import Model.Produto;
 import Model.Usuario;
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +22,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class CarrinhoServlet extends HttpServlet {
-
+    private ProdutoDAO produtoDAO;
+    
+    @Override
+    public void init() {
+        produtoDAO = new ProdutoDAO();
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
@@ -106,10 +114,24 @@ public class CarrinhoServlet extends HttpServlet {
             
             Cookie c = CookieUtils.obterCookie(request);
             
-            String novoValorCookie = Carrinho.adicionarItem(produtoID, quantidade, c.getValue());
+            Produto produto = produtoDAO.selectById(produtoID);
             
-            c.setValue(novoValorCookie);
-            response.addCookie(c);
+            Integer quantidadeAtual = Carrinho.obterQuantidadeCarrinho(produtoID, c.getValue());
+            quantidadeAtual = quantidade + quantidadeAtual;
+            
+            System.out.println("QUANTIDADE A SER INSERIDA = "+quantidadeAtual);
+            System.out.println("QUANTIDADE NO ESTOQUE = "+produto.getQuantidade());
+            
+            if (quantidadeAtual > produto.getQuantidade()) {
+                HttpSession session = request.getSession();
+                session.setAttribute("msg", "Quantidade máxima atingida.");
+            }
+            else{
+                String novoValorCookie = Carrinho.adicionarItem(produtoID, quantidade, c.getValue());
+            
+                c.setValue(novoValorCookie);
+                response.addCookie(c);
+            }
             
             response.sendRedirect(request.getContextPath()+"/carrinho");
         } 
@@ -214,10 +236,21 @@ public class CarrinhoServlet extends HttpServlet {
                 itemPedido.setValorTotal(vlrTotal);
                 
                 pedidoDAO.insertPedidoItem(itemPedido);
+                
+                Produto produto = produtoDAO.selectById(item.getProduto().getId());
+                
+                int qtdFinal = produto.getQuantidade() - item.getQuantidade();
+                
+                produto.setQuantidade(qtdFinal);
+                
+                produtoDAO.update(produto);
             }
             
             c.setValue("");
             response.addCookie(c);
+            
+            request.setAttribute("nro_pedido", idPedido);
+            request.setAttribute("vlr_pedido", valorTotal);
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/carrinho/final-compra.jsp");
             dispatcher.forward(request, response);

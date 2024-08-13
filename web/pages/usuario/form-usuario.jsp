@@ -30,7 +30,7 @@
 <html>
     <head>
         <%@ include file="/includes/header.jsp" %>
-
+        <%@ include file="/includes/valida-formulario.jsp" %>
         <title>Usuario</title>
     </head>
     <body>
@@ -49,9 +49,9 @@
                 <h1><%= label%> Usuario</h1>
                 <br>
                 
-                <form action="<%= action%>" method="POST">
+                <form id="formCriaUsuario" action="<%= action%>" method="POST">
                     <label>Nome</label><br>
-                    <input type="text" name="nome" value="<%= nome%>" placeholder="Kelvin Erick" required><br><br>
+                    <input type="text" name="nome" value="<%= nome%>" placeholder="Kelvin Erick"><br><br>
 
                     <label>Administrador</label><br>
                     <select name="adm">
@@ -68,13 +68,13 @@
                     <input type="text" name="endereco" value="<%= endereco%>"  placeholder="Rua A"><br><br>
 
                     <label>E-mail</label><br>
-                    <input type="text" name="email" value="<%= email%>" placeholder="erick@email.com" required><br><br>
+                    <input type="text" name="email" value="<%= email%>" placeholder="erick@email.com"><br><br>
 
                     <label>Senha</label><br>
-                    <input type="password" name="senha" value="<%= senha%>" placeholder="******" required><br><br>
+                    <input type="password" name="senha" value="<%= senha%>" id="senha" placeholder="******"><br><br>
 
                     <label>Confirmar Senha</label><br>
-                    <input type="password" name="confirm-senha" placeholder="******" required><br><br>
+                    <input type="password" name="confirmaSenha" placeholder="******"><br><br>
 
                     <label>Padrão de Senha</label>
                     <ul>

@@ -125,10 +125,10 @@ public class ProdutoServlet extends HttpServlet {
         String produto = request.getParameter("produto");
         List<Produto> produtos = null; 
         try {
-            produtos = produtoDAO.select();
+            produtos = produtoDAO.selectAll();
             
             if (produto != null) {
-                produtos = produtoDAO.selectByProduto(produto);
+                produtos = produtoDAO.selectByAllProduto(produto);
             }
         } 
         catch (Exception e) {

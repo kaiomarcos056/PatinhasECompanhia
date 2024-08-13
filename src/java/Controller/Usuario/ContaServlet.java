@@ -43,14 +43,16 @@ public class ContaServlet extends HttpServlet {
         
         switch (acao) {
             case "/delete":
-                delete(request, response);
+                String delete = delete(request, response);
+                //request.setAttribute("msg", delete);
+                request.getSession(true).setAttribute("msg", delete);
+                response.sendRedirect(request.getContextPath()+"/auth/login");
+                //request.getRequestDispatcher("/pages/auth/login.jsp").forward(request, response);
                 break;
             case "/update":
                 String update = update(request, response);
                 session.setAttribute("msg", update);
                 response.sendRedirect("list");
-                //dispatcher = request.getRequestDispatcher("/pages/conta/conta.jsp");
-                //dispatcher.forward(request, response);
                 break; 
             default:
                 dispatcher = request.getRequestDispatcher("/pages/conta/conta.jsp");
@@ -58,18 +60,33 @@ public class ContaServlet extends HttpServlet {
         }
     }
     
-    private void delete(HttpServletRequest request, HttpServletResponse response) {
+    private String delete(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
         String retorno = "";
         try {       
-            HttpSession session = request.getSession(false);
-            Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
-            usuarioDAO.delete(usuario.getId());
-            if (session != null) { session.invalidate(); }
-            response.sendRedirect(request.getContextPath()+"/auth/login");
+            session = request.getSession(false);
+            
+            if (session != null) {
+                Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+                if (usuario != null) {
+                    usuarioDAO.delete(usuario.getId());
+                }
+                retorno = "Conta excluída com sucesso.";
+            } 
+            else {
+                retorno = "Sessão não encontrada.";
+            }
         } 
         catch (Exception e) {
-            System.out.println("#ERRO AO EXCLUIR CONTA: "+e.getMessage());
+            retorno = "#ERRO AO EXCLUIR CONTA: "+e.getMessage();
+            System.out.println(retorno);
         }
+        finally {
+            if (session != null) {
+                session.invalidate();
+            }
+        }
+        return retorno;
     }
     
     private String update(HttpServletRequest request, HttpServletResponse response) {

@@ -18,6 +18,7 @@
 <html>
     <head>
         <%@ include file="/includes/header.jsp" %>
+        <%@ include file="/includes/valida-formulario.jsp" %>
         <title>Especie</title>
 
     </head>
@@ -39,9 +40,11 @@
                 <div class="home-titulo">
                     <h1><%= label%> Especie</h1>
                 </div>
-
+                
+                <br>
+                
                 <!-- FORMULARIO -->
-                <form action="<%= action%>" method="POST">
+                <form id="formularioEspecie" action="<%= action%>" method="POST">
                     <label>Especie</label><br>
                     <input type="text" name="especie" placeholder="Nome da especie..." value="<%= value%>" required><br><br>
                     <input type="submit" value="<%= label%> Especie">

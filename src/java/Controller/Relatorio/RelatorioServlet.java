@@ -46,7 +46,7 @@ public class RelatorioServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         switch (acao) {
-            case "/teste":
+            case "/produto-sem-estoque":
                 form(request, response, acao);
                 break;
             case "/vendas-por-usuario":

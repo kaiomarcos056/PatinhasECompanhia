@@ -1,7 +1,10 @@
 package Controller.Pedido;
 
 import DAO.PedidoDAO;
+import Model.ItemPedido;
+import Model.Pedido;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,6 +44,31 @@ public class PedidoServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         switch (acao) {
+            default:
+                list(request, response);   
+        }
+    }
+    
+    private void list(HttpServletRequest request, HttpServletResponse response){
+        String pedido = request.getParameter("pedido");
+        
+        try {
+            List<Pedido> pedidos = pedidoDAO.selectAll();
+            List<ItemPedido> itemPedidos = pedidoDAO.selectAllItens();
+            
+            if (pedido != null && pedido != "") { 
+                Integer idPedido = Integer.parseInt(pedido);
+                pedidos = pedidoDAO.selectAllByPedido(idPedido);
+            }
+            
+            request.setAttribute("pedidos", pedidos);
+            request.setAttribute("itens", itemPedidos);
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/pedido/pedido.jsp");
+            dispatcher.forward(request, response);
+        } 
+        catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
     

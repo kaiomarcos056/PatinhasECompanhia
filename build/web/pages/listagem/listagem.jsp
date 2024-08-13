@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Model.Servico"%>
 <%@page import="Model.Categoria"%>
 <%@page import="Model.Especie"%>
@@ -11,6 +12,8 @@
     Categoria categoria = (Categoria) request.getAttribute("categoria");
     List<Produto> produtos = (List<Produto>) request.getAttribute("produtos");
     List<Servico> servicos = (List<Servico>) request.getAttribute("servicos");
+    
+    DecimalFormat df = new DecimalFormat("###,##0.00");
 %>
 <!DOCTYPE html>
 <html>
@@ -93,7 +96,7 @@
                             <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
                         </div>
                         <div class="box-produto-item"><h3><%= produto.getNome()%></h3></div>
-                        <div class="box-produto-item"><h2>R$ <%= produto.getValor()%></h2></div>
+                        <div class="box-produto-item"><h2>R$ <%= df.format(produto.getValor())%></h2></div>
                         <div class="box-produto-item" style="align-self: end;">
                             <button type="submit">
                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -115,7 +118,7 @@
                             <%= servico.getDescricao()%>
                         </div>
                         <div class="servico-preco">
-                            <b>A partir de R$ <%= servico.getValor()%></b>
+                            <b>A partir de R$ <%= df.format(servico.getValor()) %></b>
                         </div>
                     </div>
                         <a href="list/servico/" class="servico-btn">Agende Online</a>

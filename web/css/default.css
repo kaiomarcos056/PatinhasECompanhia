@@ -187,3 +187,12 @@ ul li {
     padding: 10px 15px;
     border-radius: 20px;
 }
+
+label.error{
+    color: red;
+}
+
+p.sucesso{
+    color: green;
+    font-weight: 600;
+}

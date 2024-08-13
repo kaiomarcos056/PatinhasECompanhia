@@ -1,12 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    String msg = (String) session.getAttribute("msg");
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <%@ include file="/includes/header.jsp" %>
+        <%@ include file="/includes/valida-formulario.jsp" %>
         <title>Cadastro</title>
-        <%
-            String msg = (String) session.getAttribute("msg");
-        %>
     </head>
     <body>
         <br><br>
@@ -15,34 +16,27 @@
 
         <br><br>
 
-        <% if (msg != null) {%>
-        <p><%= msg%></p>
-        <%
-                session.removeAttribute("msg");
-            }
-        %>
-
         <section>
             <center>
                 <h1>Crie uma conta</h1>
                 <p>Complete os campos com as sua informações</p>
             </center>
-            
-            <form action="cadastrar" method="POST">
+            <% if (msg != null) {%> <br><p class="sucesso"><%= msg%></p><br> <% session.removeAttribute("msg"); } %>
+            <form id="formularioCadastro" action="cadastrar" method="POST">
                 <label>Nome</label><br>
-                <input type="text" name="nome" required><br><br>
+                <input type="text" name="nome" placeholder="Fula de Tal"><br><br>
 
                 <label>Endereço</label><br>
-                <input type="text" name="endereco"><br><br>
+                <input type="text" name="endereco" placeholder="Casa do fulano"><br><br>
 
                 <label>E-mail</label><br>
-                <input type="text" name="email" required><br><br>
+                <input type="text" name="email" placeholder="fulano@email.com"><br><br>
 
                 <label>Senha</label><br>
-                <input type="password" name="senha" required><br><br>
+                <input type="password" name="senha" id="senha" placeholder="********"><br><br>
 
                 <label>Confirmar Senha</label><br>
-                <input type="password" name="confirm-senha" required><br><br>
+                <input type="password" name="confirmaSenha"><br><br>
                 <br>
                 <label>Padrão de Senha</label>
                 <ul>
@@ -56,9 +50,10 @@
                     <a href="<%=request.getContextPath()%>/auth/login" class="btn-link">Já tenho uma conta</a>
                     <input type="submit" value="Criar uma conta">
                 </div>
-                
+
             </form>
         </section>
         <br><br><br><br><br><br><br>
+
     </body>
 </html>

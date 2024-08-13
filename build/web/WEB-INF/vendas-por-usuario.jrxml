@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a8c47f27-11d5-4e62-996a-911b64bc305e">
 	<property name="ireport.zoom" value="1.9487171000000065"/>
-	<property name="ireport.x" value="3"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
@@ -174,7 +174,7 @@ ORDER BY VALOR_TOTAL DESC]]>
 			</staticText>
 			<staticText>
 				<reportElement x="454" y="0" width="100" height="19" uuid="83b10c2c-60b5-4cdf-97c7-0c6b0c2ce8dc"/>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Vlr. Total]]></text>
@@ -189,7 +189,7 @@ ORDER BY VALOR_TOTAL DESC]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="32">
+		<band height="23">
 			<textField>
 				<reportElement x="0" y="0" width="100" height="23" uuid="556a82bb-74d3-4db5-a308-ed05f7f6af78"/>
 				<textElement verticalAlignment="Middle"/>
@@ -202,7 +202,7 @@ ORDER BY VALOR_TOTAL DESC]]>
 			</textField>
 			<textField pattern="¤ #,##0.00">
 				<reportElement x="455" y="0" width="100" height="23" uuid="a5ff814d-9238-46fe-ba2d-d811a00bcc61"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{valor_total}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -216,7 +216,7 @@ ORDER BY VALOR_TOTAL DESC]]>
 		<band height="20">
 			<textField>
 				<reportElement x="455" y="0" width="100" height="20" uuid="37094efa-2837-4747-9352-97c7ad355235"/>
-				<textElement textAlignment="Right"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>

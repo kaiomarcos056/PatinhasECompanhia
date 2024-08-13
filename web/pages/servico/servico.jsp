@@ -1,9 +1,11 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Model.Servico"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String msg = (String) session.getAttribute("msg");
     List<Servico> servicos = (List<Servico>) request.getAttribute("servicos");
+    DecimalFormat df = new DecimalFormat("###,##0.00");
 %>
 <!DOCTYPE html>
 <html>
@@ -68,16 +70,16 @@
                             <tr> <td colspan="2"><b>Descrição:</b></td> </tr>
                             <tr> <td colspan="2"><%= servico.getDescricao()%></td> </tr>
                             <tr> 
-                                <td><b>Valor:</b></td> 
-                                <td>R$ <%= servico.getValor()%></td>
-                            </tr>
-                            <tr> 
                                 <td><b>Especie:</b></td> 
-                                <td><%= servico.getIdEspecie()%> - <%= servico.getEspecie()%></td>
+                                <td style="text-align: right;"><%= servico.getIdEspecie()%> - <%= servico.getEspecie()%></td>
                             </tr>
                             <tr> 
                                 <td><b>Tamanho</b></td>
-                                <td><%= servico.getTamanho()%></td>
+                                <td style="text-align: right;"><%= servico.getTamanho()%></td>
+                            </tr>
+                            <tr> 
+                                <td><b>Valor:</b></td> 
+                                <td style="text-align: right;">R$ <%= df.format(servico.getValor())%></td>
                             </tr>
                             <tr>
                                 <td style="text-align: center;"> 

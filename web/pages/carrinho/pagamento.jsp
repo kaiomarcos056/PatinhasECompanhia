@@ -1,4 +1,4 @@
-<div id="pagamento" class="city" style="display:none">
+<div id="pagamento" class="aba" style="display:none">
     <br>
     <br>
     
@@ -34,8 +34,8 @@
                             <h3><%= item.getProduto().getNome()%></h3>
                         </td>
                         <td style="text-align: center;"> <%= item.getQuantidade() %> </td>
-                        <td style="text-align: right;"> <p>R$ <%= item.getProduto().getValor() %></p> </td>
-                        <td style="text-align: right;"> <p>R$ <%= item.getProduto().getValor() * item.getQuantidade() %></p> </td
+                        <td style="text-align: right;"> <p>R$ <%= df.format(item.getProduto().getValor()) %></p> </td>
+                        <td style="text-align: right;"> <p>R$ <%= df.format(item.getProduto().getValor() * item.getQuantidade()) %></p> </td
                     </tr>
                 <% } %>
                 </table>
@@ -49,7 +49,7 @@
                             <b>Frete:</b>
                         </td>
                         <input type="hidden" name="valor-frete" value="<%= frete %>">
-                        <td style="text-align: right;"> <p>R$ <%= frete %></p> </td>
+                        <td style="text-align: right;"> <p>R$ <%= df.format(frete) %></p> </td>
                     </tr>
                 </table>
                 <div id="linha" style="width: 100%; border-bottom: 1px solid black;"></div>
@@ -59,7 +59,7 @@
                             <b>Total:</b>
                         </td>
                         <input type="hidden" name="valor-total" value="<%= total %>">
-                        <td style="text-align: right;"> <p>R$ <%= total %></p> </td>
+                        <td style="text-align: right;"> <p>R$ <%= df.format(total) %></p> </td>
                     </tr>
                 </table>
                 
@@ -77,12 +77,18 @@
                     <tr>
                         <td colspan="2"> <input type="text" name="numero-cartao" style="width: 95%;" placeholder="1234 5678 9101 778"> </td>
                     </tr>
+                    
+                    <tr><td colspan="2">&nbsp;</td></tr>
+                    
                     <tr>
-                        <td colspan="2" <label>Nome impresso no cartão</label></td>
+                        <td colspan="2"> <label>Nome impresso no cartão</label></td>
                     </tr>
                     <tr>
                         <td colspan="2"> <input type="text" name="nome-cartao" style="width: 95%;" placeholder="CARTAO"><br></td>
                     </tr>
+                    
+                    <tr><td colspan="2">&nbsp;</td></tr>
+                    
                     <tr>
                         <td> <label>CPF do Titular</label></td>
                         <td> <label>Validade</label></td>
@@ -91,6 +97,9 @@
                         <td> <input type="text" name="cpf-titular" style="width: 90%;" placeholder="123.456.789-00"></td>
                         <td> <input type="text" name="validade" style="width: 90%;" placeholder="08/23"></td>
                     </tr>
+                    
+                    <tr><td colspan="2">&nbsp;</td></tr>
+                    
                     <tr>
                         <td> <label>CVV</label></td>
                     </tr>
@@ -105,7 +114,7 @@
             
             <!--<button class="tab-button" onclick="openCity('final-compra');changeBorder(this)">Finalizar compra</button>-->
             
-           <input type="submit" name="name">
+            <input type="submit" name="name" value="Finalizar Compra">
            
            <!-- FIM FORM CRIAR COMPRA -->
            </form>

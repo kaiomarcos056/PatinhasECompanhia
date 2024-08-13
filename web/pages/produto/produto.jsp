@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Model.Produto"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -5,6 +6,8 @@
 <%
     String msg = (String) session.getAttribute("msg");
     List<Produto> produtos = (List<Produto>) request.getAttribute("produtos");
+    
+    DecimalFormat df = new DecimalFormat("###,##0.00");
 %>
 <html>
     <head>
@@ -66,27 +69,27 @@
                         <table border="0" style="width: 100%;">
                             <tr>
                                 <td><b>Nome</b></td>
-                                <td><%= produto.getId()%> - <%= produto.getNome()%></td>
+                                <td style="text-align: right;"><%= produto.getId()%> - <%= produto.getNome()%></td>
                             </tr>
                             <tr>
                                 <td><b>Categoria</b></td>
-                                <td><%= produto.getIdCategoria()%> - <%= produto.getCategoria()%></td>
+                                <td style="text-align: right;"><%= produto.getIdCategoria()%> - <%= produto.getCategoria()%></td>
                             </tr>
                             <tr>
                                 <td><b>Marca</b></td>
-                                <td><%= produto.getIdMarca()%> - <%= produto.getMarca()%></td>
+                                <td style="text-align: right;"><%= produto.getIdMarca()%> - <%= produto.getMarca()%></td>
                             </tr>
                             <tr>
                                 <td><b>Especie</b></td>
-                                <td><%= produto.getIdEspecie()%> - <%= produto.getEspecie()%></td>
+                                <td style="text-align: right;"><%= produto.getIdEspecie()%> - <%= produto.getEspecie()%></td>
                             </tr>
                             <tr>
                                 <td><b>Quantidade</b></td>
-                                <td><%= produto.getQuantidade()%></td>
+                                <td style="text-align: right;"><%= produto.getQuantidade()%></td>
                             </tr>
                             <tr>
                                 <td><b>Valor</b></td>
-                                <td>R$ <%= produto.getValor()%></td>
+                                <td style="text-align: right;">R$ <%= df.format(produto.getValor())%></td>
                             </tr>
 
                             <tr>

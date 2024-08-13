@@ -1,9 +1,13 @@
 <%@page import="Model.Usuario"%>
 <% 
     Usuario usu = (Usuario) session.getAttribute("usuario_logado");
+    
     String caminho = request.getContextPath()+"/auth/login";
+    String favorito = request.getContextPath()+"/auth/login";
+    
     if (usu != null) {
         caminho = request.getContextPath()+"/dashboard/";
+        favorito = request.getContextPath()+"/dashboard/favorito/list";
     }
 %>
 <script src="${pageContext.request.contextPath}/js/side-nav.js"></script>
@@ -43,7 +47,7 @@
             </a>
         </li>
         <li>
-            <a href="favorito">
+            <a href="<%= favorito %>">
                 <i class="fa-solid fa-heart"></i>
             </a>
         </li>

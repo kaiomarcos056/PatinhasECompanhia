@@ -25,6 +25,10 @@ public class PedidoDAO {
     
     private static final String SELECT_PEDIDOS_POR_USUARIO = "SELECT * FROM PEDIDO WHERE ID_USUARIO = ? ORDER BY ID_PEDIDO DESC";
     
+    private static final String SELECT_ALL_PEDIDOS = "SELECT * FROM PEDIDO WHERE 1 = 1 ORDER BY ID_PEDIDO DESC";
+    
+    private static final String SELECT_ALL_PEDIDOS_POR_PEDIDO = "SELECT * FROM PEDIDO WHERE ID_PEDIDO = ? ORDER BY ID_PEDIDO DESC";
+    
     private static final String SELECT_PEDIDO_POR_USUARIO_E_PEDIDO = "SELECT * FROM PEDIDO WHERE ID_USUARIO = ? "
             + "AND ID_PEDIDO = ? ORDER BY ID_PEDIDO DESC";
     
@@ -44,6 +48,12 @@ public class PedidoDAO {
 "INNER JOIN PRODUTO PR ON PR.ID_PRODUTO = IT.ID_PRODUTO\n" +
 "WHERE PE.ID_USUARIO = ? AND IT.ID_PEDIDO = ?";
     
+    private static final String SELECT_ALL_ITENS = ""
+            + "SELECT \n" +
+"	IT.* , PR.NOME_FOTO, PR.NOME\n" +
+"FROM PEDIDO_ITEM IT \n" +
+"INNER JOIN PEDIDO PE ON PE.ID_PEDIDO = IT.ID_PEDIDO\n" +
+"INNER JOIN PRODUTO PR ON PR.ID_PRODUTO = IT.ID_PRODUTO";
     
     
     public int insertPedido(Pedido pedido) throws SQLException {	
@@ -179,6 +189,119 @@ public class PedidoDAO {
         }
     }
     
+    public List<Pedido> selectAll() throws SQLException {
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        
+        List<Pedido> pedidos = new ArrayList<>();
+        
+        try{
+            conexao = Conexao.getConexao();
+            
+            ps = conexao.prepareStatement(SELECT_ALL_PEDIDOS);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Endereco endereco = new Endereco();
+                
+                endereco.setLogradouro(rs.getString("LOGRADOURO"));
+                endereco.setCep(rs.getString("CEP"));
+                endereco.setNumeroEndereco(rs.getString("NUMERO_ENDERECO"));
+                endereco.setComplemento(rs.getString("COMPLEMENTO"));
+                endereco.setBairro(rs.getString("BAIRRO"));
+                endereco.setCidade(rs.getString("CIDADE"));
+                endereco.setUf(rs.getString("UF"));
+                endereco.setPontoReferencia(rs.getString("PONTO_REFERENCIA"));
+                
+                Cartao cartao = new Cartao();
+                cartao.setNumero(rs.getString("NUMERO_CARTAO"));
+                cartao.setNome(rs.getString("NOME_CARTAO"));
+                cartao.setCpf(rs.getString("CPF_TITULAR"));
+                cartao.setValidade(rs.getString("VALIDADE"));
+                cartao.setCvv(rs.getString("CVV"));
+                
+                Pedido pedido = new Pedido();
+                pedido.setCartao(cartao);
+                pedido.setEndereco(endereco);
+                pedido.setIdPedido(rs.getInt("ID_PEDIDO"));
+                pedido.setIdUsuario(rs.getInt("ID_USUARIO"));
+                pedido.setValorFrete(rs.getDouble("VALOR_FRETE"));
+                pedido.setValorItens(rs.getDouble("VALOR_ITENS"));
+                pedido.setValorTotal(rs.getDouble("VALOR_TOTAL"));
+                pedido.setDataPedido(rs.getDate("DATA_PEDIDO"));
+                
+                pedidos.add(pedido);
+            }
+            
+            return pedidos;
+        }
+        catch(Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+        finally {
+            ps.close();
+            conexao.close();
+        }
+    }
+    
+    public List<Pedido> selectAllByPedido(int idPedido) throws SQLException {
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        
+        List<Pedido> pedidos = new ArrayList<>();
+        
+        try{
+            conexao = Conexao.getConexao();
+            
+            ps = conexao.prepareStatement(SELECT_ALL_PEDIDOS_POR_PEDIDO);
+            ps.setInt(1, idPedido);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Endereco endereco = new Endereco();
+                
+                endereco.setLogradouro(rs.getString("LOGRADOURO"));
+                endereco.setCep(rs.getString("CEP"));
+                endereco.setNumeroEndereco(rs.getString("NUMERO_ENDERECO"));
+                endereco.setComplemento(rs.getString("COMPLEMENTO"));
+                endereco.setBairro(rs.getString("BAIRRO"));
+                endereco.setCidade(rs.getString("CIDADE"));
+                endereco.setUf(rs.getString("UF"));
+                endereco.setPontoReferencia(rs.getString("PONTO_REFERENCIA"));
+                
+                Cartao cartao = new Cartao();
+                cartao.setNumero(rs.getString("NUMERO_CARTAO"));
+                cartao.setNome(rs.getString("NOME_CARTAO"));
+                cartao.setCpf(rs.getString("CPF_TITULAR"));
+                cartao.setValidade(rs.getString("VALIDADE"));
+                cartao.setCvv(rs.getString("CVV"));
+                
+                Pedido pedido = new Pedido();
+                pedido.setCartao(cartao);
+                pedido.setEndereco(endereco);
+                pedido.setIdPedido(rs.getInt("ID_PEDIDO"));
+                pedido.setIdUsuario(rs.getInt("ID_USUARIO"));
+                pedido.setValorFrete(rs.getDouble("VALOR_FRETE"));
+                pedido.setValorItens(rs.getDouble("VALOR_ITENS"));
+                pedido.setValorTotal(rs.getDouble("VALOR_TOTAL"));
+                pedido.setDataPedido(rs.getDate("DATA_PEDIDO"));
+                
+                pedidos.add(pedido);
+            }
+            
+            return pedidos;
+        }
+        catch(Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+        finally {
+            ps.close();
+            conexao.close();
+        }
+    }
+    
     public List<ItemPedido> selectItensByUsuario(int idUsuario) throws SQLException {
         Connection conexao = null;
         PreparedStatement ps = null;
@@ -190,6 +313,45 @@ public class PedidoDAO {
             
             ps = conexao.prepareStatement(SELECT_ITENS_PEDIDO_POR_USUARIO);
             ps.setInt(1, idUsuario);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){                
+                ItemPedido itemPedido = new ItemPedido();
+                
+                itemPedido.setIdPedido(rs.getInt("ID_PEDIDO"));
+                itemPedido.setIdProduto(rs.getInt("ID_PRODUTO"));
+                itemPedido.setIdPedidoItem(rs.getInt("ID_PEDIDO_ITEM"));
+                itemPedido.setQuantidade(rs.getInt("QUANTIDADE"));
+                itemPedido.setValorUnitario(rs.getDouble("VALOR_UNITARIO"));
+                itemPedido.setValorTotal(rs.getDouble("VALOR_TOTAL"));
+                itemPedido.setFotoProduto(rs.getString("NOME_FOTO"));
+                itemPedido.setNomeProduto(rs.getString("NOME"));
+                                
+                itemPedidos.add(itemPedido);
+            }
+            
+            return itemPedidos;
+        }
+        catch(Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+        finally {
+            ps.close();
+            conexao.close();
+        }
+    }
+    
+    public List<ItemPedido> selectAllItens() throws SQLException {
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        
+        List<ItemPedido> itemPedidos = new ArrayList<>();
+        
+        try{
+            conexao = Conexao.getConexao();
+            
+            ps = conexao.prepareStatement(SELECT_ALL_ITENS);
             
             ResultSet rs = ps.executeQuery();
             

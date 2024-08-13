@@ -77,7 +77,7 @@ public class AuthServlet extends HttpServlet {
         
         try{
             usuarioDAO.insert(usuario);
-            retorno = "Usuario cadastrado com sucesso.";
+            retorno = "Usuário cadastrado com sucesso.";
         }
         catch(Exception e){
             retorno = e.getMessage();

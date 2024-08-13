@@ -66,6 +66,21 @@
                 background: white;
                 color: orange;
             }
+            
+            .btn-relatorio{
+                border: none;
+                background: none;
+                color: var(--azul);
+                font-size: 16px;
+                cursor: pointer;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .btn-relatorio:hover{
+                color: var(--laranja);
+            }
         </style>
         <title>Relatórios</title>
     </head>
@@ -98,15 +113,15 @@
                     <tr>
                         <td>Produto Sem Estoque</td>
                         <td>
-                            <a href="teste" class="edit" target="_blank">
-                                Ver Relatório
+                            <a href="produto-sem-estoque" class="btn-relatorio" target="_blank">
+                                <i class="fa-solid fa-eye"></i> Ver Relatório 
                             </a>
                         </td>
                     </tr>
                     <tr>
                         <td>Compras Por Usuário</td>
                         <td>
-                            <button id="btn-vendas">Ver Relatório</button>
+                            <button id="btn-vendas" class="btn-relatorio"><i class="fa-solid fa-eye"></i>Ver Relatório</button>
                             <div id="modal-vendas" class="modal">
                                 <div class="modal-content">
                                     <span class="close close-vendas" style="align-self: end;">&times;</span>
@@ -125,7 +140,7 @@
                     <tr>
                         <td>Faturamento Diário</td>
                         <td>
-                            <button id="btn-faturamento">Ver Relatório</button>
+                            <button id="btn-faturamento" class="btn-relatorio"><i class="fa-solid fa-eye"></i>Ver Relatório</button>
                             <div id="modal-faturamento" class="modal">
                                 <div class="modal-content">
                                     <span class="close close-faturamento" style="align-self: end;">&times;</span>
