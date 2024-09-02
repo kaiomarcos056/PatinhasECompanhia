@@ -6,4 +6,6 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/messages_pt_BR.js"></script>
 
+<script src="${pageContext.request.contextPath}/js/jquery.mask.js" ></script>
+
 <script src="${pageContext.request.contextPath}/js/valida-formulario.js" ></script>

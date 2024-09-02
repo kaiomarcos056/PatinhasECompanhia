@@ -30,6 +30,14 @@
             <% if(usu != null) { %>
             <% if(usu.isAdministrador()) { %>
             <li>
+                <a href="<%= request.getContextPath() %>/dashboard/agendamento/list" >
+                    &nbsp;&nbsp;
+                    <i class="fa-regular fa-calendar-days"></i>
+                    &nbsp;&nbsp;
+                    Agendamentos
+                </a>
+            </li>
+            <li>
                 <a href="<%= request.getContextPath() %>/dashboard/usuario/list" >
                     &nbsp;&nbsp;
                     <i class="fa-solid fa-layer-group"></i>

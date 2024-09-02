@@ -1,8 +1,9 @@
+<%@page import="Model.Mensagem"%>
 <%@page import="java.util.List"%>
 <%@page import="Model.Marca"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String msg = (String) session.getAttribute("msg");
+    Mensagem msg = (Mensagem) session.getAttribute("msg");
     List<Marca> marcas = (List<Marca>) request.getAttribute("marcas");
 %>
 <!DOCTYPE html>
@@ -42,11 +43,8 @@
                 
                 <!-- MENSGEM DE CADASTRO -->
                 <% if(msg != null){ %>
-                    <p><%= msg %></p>
-                <%      
-                    session.removeAttribute("msg"); 
-                    }
-                %>
+                <p class="<%= msg.getStatus() %>"><%= msg.getMensagem() %></p>
+                <%  session.removeAttribute("msg");  } %>
                 
                 <!-- TABELA -->
                 <table class="tabela-home">

@@ -94,7 +94,14 @@ public class CarrinhoServlet extends HttpServlet {
             c.setValue(novoValorCookie);
             response.addCookie(c);
             
-            response.sendRedirect(request.getContextPath()+"/");
+            String referer = request.getHeader("Referer");
+            System.out.println("REFERER = "+referer);
+            
+            if (referer != null && !referer.isEmpty()) {
+                response.sendRedirect(referer);
+            } else {
+               response.sendRedirect(request.getContextPath()+"/");
+            }
         } 
         catch (Exception e) {
             System.out.println("ERRO AO ADD ITEM = "+e.getMessage());
@@ -160,6 +167,7 @@ public class CarrinhoServlet extends HttpServlet {
 
     private void insert(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("INICIANDO COMPRA.");
+        
         try {
             HttpSession session = request.getSession(false);
             
@@ -173,12 +181,12 @@ public class CarrinhoServlet extends HttpServlet {
             
             String logradouro = request.getParameter("endereco");
             String cep = request.getParameter("cep");
-            String numEndereco = request.getParameter("numero-casa");
+            String numEndereco = request.getParameter("numerocasa");
             String complemento = request.getParameter("complemento");
             String bairro = request.getParameter("bairro");
             String cidade = request.getParameter("cidade");
             String uf = request.getParameter("uf");
-            String pontoRef = request.getParameter("ponto-referencia");
+            String pontoRef = request.getParameter("pontoreferencia");
             
             Double valorFrete = Double.parseDouble(request.getParameter("valor-frete"));
             Double valorTotal = Double.parseDouble(request.getParameter("valor-total"));
@@ -193,9 +201,9 @@ public class CarrinhoServlet extends HttpServlet {
             endereco.setUf(uf);
             endereco.setPontoReferencia(pontoRef);
             
-            String numCartao = request.getParameter("numero-cartao");
-            String nomeCartao = request.getParameter("nome-cartao");
-            String cpfTitular = request.getParameter("cpf-titular");
+            String numCartao = request.getParameter("numerocartao");
+            String nomeCartao = request.getParameter("nomecartao");
+            String cpfTitular = request.getParameter("cpftitular").replaceAll("[.-]", "");
             String validade = request.getParameter("validade");
             String cvv = request.getParameter("cvv");
             
@@ -258,5 +266,6 @@ public class CarrinhoServlet extends HttpServlet {
         catch (Exception e) {
             System.out.println("ERRO NO PROCESSO DE COMPRAR: "+e.getMessage());
         }
+        
     }
 }

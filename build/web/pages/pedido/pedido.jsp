@@ -43,6 +43,9 @@
                 
                 <br>
                 
+                <!-- MENSGEM DE CADASTRO -->
+                <% if(msg != null){ %> <p><%= msg %></p> <br><% session.removeAttribute("msg"); } %>
+                
                 <!-- TABELA -->
                 <% if(pedidos == null){ %>
                     Pedidos não encontradas.
@@ -60,6 +63,7 @@
                             </div>
                             <div class="meus-pedidos-header-item">
                                 <label>Nº Pedido <%= pedido.getIdPedido()%></label>
+                                <a class="btn-relatorio" href="delete?id=<%= pedido.getIdPedido() %>"><i class="fa-regular fa-trash-can"></i>Excluir Pedido</a>
                             </div>
                         </div>
                         <% for (ItemPedido item : itens) { %>
@@ -77,5 +81,6 @@
                 
             </div>
         </section>
+        <br><br><br><br>
     </body>
 </html>

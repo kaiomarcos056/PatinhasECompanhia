@@ -45,6 +45,7 @@
 <html>
     <head>
         <%@ include file="/includes/header.jsp" %>
+        <%@ include file="/includes/valida-formulario.jsp" %>
         <title>Produto</title>
     </head>
     <body>
@@ -67,20 +68,20 @@
                 </div>
 
                 <!-- FORMULARIO -->
-                <form action="<%= action%>" method="POST" enctype="multipart/form-data">
+                <form id="formProduto" action="<%= action%>" method="POST" enctype="multipart/form-data">
                     <div id="imagePreview">
                         <img src="${pageContext.request.contextPath}/assets/produtos/<%= foto%>">
                     </div>
                     <input type="file" name="foto" accept="image/*" id="fileInput" value="${pageContext.request.contextPath}<%= caminhoFoto %>"><br><br>
 
                     <label>Nome Produto</label><br>
-                    <input type="text" name="nome" placeholder="nome do produto" value="<%= nome%>" required><br><br>
+                    <input type="text" name="nome" placeholder="nome do produto" value="<%= nome%>" ><br><br>
 
                     <label>Valor</label><br>
-                    <input type="number" name="valor" step="0.01" min="0" placeholder="25,50"" value="<%= preco%>" required><br><br>
+                    <input type="number" name="valor" step="0.01" min="0" placeholder="25,50"" value="<%= preco%>" ><br><br>
 
                     <label>Quantidade:</label><br>
-                    <input type="number" name="quantidade" min="0" value="<%= quantidade%>" required><br><br>
+                    <input type="number" name="quantidade" min="0" value="<%= quantidade%>" ><br><br>
 
                     <label>Categoria:</label><br>
                     <select name="categoria">

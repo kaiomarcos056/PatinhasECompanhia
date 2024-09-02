@@ -44,6 +44,11 @@ public class PedidoServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         switch (acao) {
+            case "/delete":
+                String delete = delete(request, response);
+                session.setAttribute("msg", delete);
+                response.sendRedirect("list");
+                break;
             default:
                 list(request, response);   
         }
@@ -70,6 +75,20 @@ public class PedidoServlet extends HttpServlet {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private String delete(HttpServletRequest request, HttpServletResponse response) {
+        String retorno = "";
+        try {       
+            Integer id = Integer.valueOf(request.getParameter("id"));
+            pedidoDAO.deleteItem(id);
+            pedidoDAO.deletePedido(id);
+            retorno = "Pedido excluido com sucesso.";
+        } 
+        catch (Exception e) {
+            retorno = "#ERRO "+e.getMessage();
+        }
+        return retorno;
     }
     
 }

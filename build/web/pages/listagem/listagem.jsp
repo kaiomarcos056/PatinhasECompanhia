@@ -1,3 +1,6 @@
+<%@page import="DAO.FavoritoDAO"%>
+<%@page import="Model.Favorito"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="Model.Servico"%>
 <%@page import="Model.Categoria"%>
@@ -6,6 +9,8 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    FavoritoDAO favDAO = new FavoritoDAO();
+    
     String idCategoria = request.getParameter("categoria");
     
     Especie especie = (Especie) request.getAttribute("especie");
@@ -14,6 +19,11 @@
     List<Servico> servicos = (List<Servico>) request.getAttribute("servicos");
     
     DecimalFormat df = new DecimalFormat("###,##0.00");
+    
+    Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+    
+    List<Favorito> favoritos = new ArrayList<>();
+    if (usuario != null) { favoritos = favDAO.selectByUsuario(usuario.getId()); }
 %>
 <!DOCTYPE html>
 <html>
@@ -88,9 +98,25 @@
                 <% if (produtos != null && produtos.size() > 0) { %>
                 <% for (Produto produto : produtos) {%>
                 <form action="${pageContext.request.contextPath}/carrinho/add">
+                    <input type="hidden" name="produtoID" value="<%= produto.getId()%>" />
                     <div class="box-produto">
                         <div class="box-produto-item" style="align-self: end;" >
-                            <a href=""><i class="fa-regular fa-heart"></i></a>
+                            <%  boolean achou = false; %>
+                                <% if (favoritos == null || favoritos.isEmpty()) {  %>
+                                <a href="${pageContext.request.contextPath}/dashboard/favorito/add?id=<%= produto.getId() %>"><i class="fa-regular fa-heart"></i></a>
+                                <%  } else { %>
+                                    <% for (Favorito f : favoritos) { 
+                                            if (f.getIdProduto() == produto.getId()) {
+                                                achou = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (achou) { %>
+                                            <a href="${pageContext.request.contextPath}/dashboard/favorito/remove?id=<%= produto.getId() %>"><i class="fa-solid fa-heart"></i></a>
+                                    <%  } else { %>
+                                        <a href="${pageContext.request.contextPath}/dashboard/favorito/add?id=<%= produto.getId() %>"><i class="fa-regular fa-heart"></i></a>
+                                    <%  }  }  %>
                         </div>
                         <div class="box-produto-item" style="align-self: center;">
                             <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
@@ -121,7 +147,7 @@
                             <b>A partir de R$ <%= df.format(servico.getValor()) %></b>
                         </div>
                     </div>
-                        <a href="list/servico/" class="servico-btn">Agende Online</a>
+                        <a href="${pageContext.request.contextPath}/dashboard/agendamento/list" class="servico-btn">Agende Online</a>
                 </div>
                     
                 <% } %>

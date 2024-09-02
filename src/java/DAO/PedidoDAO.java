@@ -23,6 +23,10 @@ public class PedidoDAO {
             + "INSERT INTO PEDIDO_ITEM(id_pedido, id_produto, quantidade, valor_unitario, valor_total) "
             + "VALUES(?, ?, ?, ?, ?)";
     
+    private static final String DELETE_ITEM = "DELETE FROM PEDIDO_ITEM WHERE ID_PEDIDO = ?";
+    
+    private static final String DELETE_PEDIDO = "DELETE FROM PEDIDO WHERE ID_PEDIDO = ?";
+    
     private static final String SELECT_PEDIDOS_POR_USUARIO = "SELECT * FROM PEDIDO WHERE ID_USUARIO = ? ORDER BY ID_PEDIDO DESC";
     
     private static final String SELECT_ALL_PEDIDOS = "SELECT * FROM PEDIDO WHERE 1 = 1 ORDER BY ID_PEDIDO DESC";
@@ -475,6 +479,46 @@ public class PedidoDAO {
             throw new RuntimeException(e.getMessage());
         }
         finally {
+            ps.close();
+            conexao.close();
+        }
+    }
+    
+    public void deleteItem(int id) throws SQLException {
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        
+        try{
+            conexao = Conexao.getConexao();
+            
+            ps = conexao.prepareStatement(DELETE_ITEM);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }
+        catch(Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+        finally{
+            ps.close();
+            conexao.close();
+        }
+    }
+    
+    public void deletePedido(int id) throws SQLException {
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        
+        try{
+            conexao = Conexao.getConexao();
+            
+            ps = conexao.prepareStatement(DELETE_PEDIDO);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }
+        catch(Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
+        finally{
             ps.close();
             conexao.close();
         }

@@ -1,3 +1,6 @@
+<%@page import="Model.Favorito"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="DAO.FavoritoDAO"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="Model.Servico"%>
 <%@page import="DAO.ServicoDAO"%>
@@ -8,8 +11,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     ServicoDAO servicoDAO = new ServicoDAO();
-    
     ProdutoDAO prodDAO = new ProdutoDAO();
+    FavoritoDAO favDAO = new FavoritoDAO();
     
     List<Produto> racoes = prodDAO.selectByCategoria(3); // RAÇÃO = ID 3
     List<Produto> brinquedos = prodDAO.selectByCategoria(4); // BRINQUEDOS = ID 4
@@ -18,6 +21,11 @@
     List<Servico> servicos = servicoDAO.select();
     
     Usuario usuario = (Usuario) session.getAttribute("usuario_logado");
+    
+    List<Favorito> favoritos = new ArrayList<>();
+    if (usuario != null) {
+        favoritos = favDAO.selectByUsuario(usuario.getId());
+    }
     
     DecimalFormat df = new DecimalFormat("###,##0.00");
 %>
@@ -60,7 +68,7 @@
                             <b>A partir de R$ <%= df.format(servico.getValor())%></b>
                         </div>
                     </div>
-                        <a href="list/servico/" class="servico-btn">Agende Online</a>
+                        <a href="dashboard/agendamento/list" class="servico-btn">Agende Online</a>
                 </div>
                 <% } %>
             </div>
@@ -97,7 +105,22 @@
 
                         <div class="box-produto">
                             <div class="box-produto-item" style="align-self: end;" >
-                                <a href=""><i class="fa-regular fa-heart"></i></a>
+                                <%  boolean achou = false; %>
+                                <% if (favoritos == null || favoritos.isEmpty()) {  %>
+                                <a href="${pageContext.request.contextPath}/dashboard/favorito/add?id=<%= produto.getId() %>"><i class="fa-regular fa-heart"></i></a>
+                                <%  } else { %>
+                                    <% for (Favorito f : favoritos) { 
+                                            if (f.getIdProduto() == produto.getId()) {
+                                                achou = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (achou) { %>
+                                            <a href="${pageContext.request.contextPath}/dashboard/favorito/remove?id=<%= produto.getId() %>"><i class="fa-solid fa-heart"></i></a>
+                                    <%  } else { %>
+                                        <a href="${pageContext.request.contextPath}/dashboard/favorito/add?id=<%= produto.getId() %>"><i class="fa-regular fa-heart"></i></a>
+                                    <%  }  }  %>
                             </div>
                             <div class="box-produto-item" style="align-self: center;">
                                 <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
@@ -134,7 +157,22 @@
 
                         <div class="box-produto">
                             <div class="box-produto-item" style="align-self: end;" >
-                                <a href=""><i class="fa-regular fa-heart"></i></a>
+                                <%  boolean achou = false; %>
+                                <% if (favoritos == null || favoritos.isEmpty()) {  %>
+                                <a href="${pageContext.request.contextPath}/dashboard/favorito/add?id=<%= produto.getId() %>"><i class="fa-regular fa-heart"></i></a>
+                                <%  } else { %>
+                                    <% for (Favorito f : favoritos) { 
+                                            if (f.getIdProduto() == produto.getId()) {
+                                                achou = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (achou) { %>
+                                            <a href="${pageContext.request.contextPath}/dashboard/favorito/remove?id=<%= produto.getId() %>"><i class="fa-solid fa-heart"></i></a>
+                                    <%  } else { %>
+                                        <a href="${pageContext.request.contextPath}/dashboard/favorito/add?id=<%= produto.getId() %>"><i class="fa-regular fa-heart"></i></a>
+                                    <%  }  }  %>
                             </div>
                             <div class="box-produto-item" style="align-self: center;">
                                 <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">
@@ -170,7 +208,22 @@
 
                     <div class="box-produto">
                         <div class="box-produto-item" style="align-self: end;" >
-                            <a href=""><i class="fa-regular fa-heart"></i></a>
+                            <%  boolean achou = false; %>
+                                <% if (favoritos == null || favoritos.isEmpty()) {  %>
+                                <a href="${pageContext.request.contextPath}/dashboard/favorito/add?id=<%= produto.getId() %>"><i class="fa-regular fa-heart"></i></a>
+                                <%  } else { %>
+                                    <% for (Favorito f : favoritos) { 
+                                            if (f.getIdProduto() == produto.getId()) {
+                                                achou = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (achou) { %>
+                                            <a href="${pageContext.request.contextPath}/dashboard/favorito/remove?id=<%= produto.getId() %>"><i class="fa-solid fa-heart"></i></a>
+                                    <%  } else { %>
+                                        <a href="${pageContext.request.contextPath}/dashboard/favorito/add?id=<%= produto.getId() %>"><i class="fa-regular fa-heart"></i></a>
+                                    <%  }  }  %>
                         </div>
                         <div class="box-produto-item" style="align-self: center;">
                             <img src="${pageContext.request.contextPath}/assets/produtos/<%= produto.getFoto()%>">

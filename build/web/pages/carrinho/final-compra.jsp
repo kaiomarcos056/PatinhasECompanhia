@@ -35,9 +35,9 @@
                 >
                     <h1 style="font-size: 40px; font-weight: 400;">Pedido nº <%=  nroPedido %></h1>
                     <div style="border-bottom: 1px solid black; width: 646px; "></div>
-                    <div style="display: flex; justify-content: space-between; width: 646px;">
-                        <h3>Total</h3>
-                        <h3>R$ <%=  vlrPedidoFormatado %></h3>
+                    <div style="display: flex; justify-content: space-between; width: 646px; align-items: center;">
+                        <h3 style="font-size: 30px; font-weight: 600;">Total</h3>
+                        <h3 style="font-size: 30px; font-weight: 400;">R$ <%=  vlrPedidoFormatado %></h3>
                     </div>
                 </div>
             </center>

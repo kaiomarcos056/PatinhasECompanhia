@@ -42,14 +42,6 @@
                 cursor: pointer;
             }
 
-            input[type="date"] {
-                width: 100%;
-                font-size: 16px;
-                padding: 5px;
-                border: 1px solid orange;
-                border-radius: 5px;
-            }
-
             .btn-modal{
                 align-self: end;
                 background: orange;

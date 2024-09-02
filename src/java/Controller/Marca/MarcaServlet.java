@@ -2,6 +2,7 @@ package Controller.Marca;
 
 import DAO.MarcaDAO;
 import Model.Marca;
+import Model.Mensagem;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -47,17 +48,17 @@ public class MarcaServlet extends HttpServlet {
                 form(request, response, acao);
                 break;
             case "/insert":
-                String insert = insert(request, response);
+                Mensagem insert = insert(request, response);
                 session.setAttribute("msg", insert);
                 response.sendRedirect("list");
                 break;
             case "/delete":
-                String delete = delete(request, response);
+                Mensagem delete = delete(request, response);
                 session.setAttribute("msg", delete);
                 response.sendRedirect("list");
                 break;
             case "/update":
-                String update = update(request, response);
+                Mensagem update = update(request, response);
                 session.setAttribute("msg", update);
                 response.sendRedirect("list");
                 break; 
@@ -85,17 +86,20 @@ public class MarcaServlet extends HttpServlet {
         }
     }
     
-    private String insert(HttpServletRequest request, HttpServletResponse response){
-        String retorno = "";
+    private Mensagem insert(HttpServletRequest request, HttpServletResponse response){
+        Mensagem msg = new Mensagem();
         try {       
             String descricao = request.getParameter("marca");
             marcaDAO.insert(descricao);
-            retorno = "Marca cadastrada com sucesso.";
+            
+            msg.setMensagem("Marca cadastrada com sucesso.");
+            msg.setStatus("sucesso");
         } 
         catch (Exception e) {
-            retorno = "#ERRO "+e.getMessage();
+            msg.setMensagem(e.getMessage());
+            msg.setStatus("erro");
         }
-        return retorno;
+        return msg;
     }
     
     private List<Marca> list(HttpServletRequest request, HttpServletResponse response){
@@ -113,21 +117,24 @@ public class MarcaServlet extends HttpServlet {
         return marcas;
     }
 
-    private String delete(HttpServletRequest request, HttpServletResponse response) {
-        String retorno = "";
+    private Mensagem delete(HttpServletRequest request, HttpServletResponse response) {
+        Mensagem msg = new Mensagem();
         try {       
             Integer id = Integer.valueOf(request.getParameter("id"));
             marcaDAO.delete(id);
-            retorno = "Marca excluida com sucesso.";
+            
+            msg.setMensagem("Marca excluida com sucesso.");
+            msg.setStatus("sucesso");
         } 
         catch (Exception e) {
-            retorno = "#ERRO "+e.getMessage();
+            msg.setMensagem(e.getMessage());
+            msg.setStatus("erro");
         }
-        return retorno;
+        return msg;
     }
 
-    private String update(HttpServletRequest request, HttpServletResponse response) {
-        String retorno = "";
+    private Mensagem update(HttpServletRequest request, HttpServletResponse response) {
+        Mensagem msg = new Mensagem();
         try {       
             Integer id = Integer.valueOf(request.getParameter("id"));
             String descricao = request.getParameter("marca");
@@ -138,11 +145,13 @@ public class MarcaServlet extends HttpServlet {
             
             marcaDAO.update(marca);
             
-            retorno = "Marca alterada com sucesso.";
+            msg.setMensagem("Marca alterada com sucesso.");
+            msg.setStatus("sucesso");
         } 
         catch (Exception e) {
-            retorno = "#ERRO "+e.getMessage();
+            msg.setMensagem(e.getMessage());
+            msg.setStatus("erro");
         }
-        return retorno;
+        return msg;
     }
 }
